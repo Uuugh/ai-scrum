@@ -1,40 +1,37 @@
-# スプリントバックログ - Sprint 001
+# Sprint Backlog - Sprint 001
 
-## スプリントゴール
-（このスプリントで達成すべき単一の目的を記載）
+## Sprint Goal
+(State the single purpose this Sprint should achieve.)
 
-> スプリントゴールはスプリントの単一の目的である。スプリントゴールは開発者によるコミットメントであるが、
-> それを達成するために必要な正確な作業に関しては柔軟性を提供する。
-> — スクラムガイド 2020
+> The Sprint Goal is the single objective for the Sprint. It is a commitment by the Developers while allowing flexibility in the exact work needed to achieve it.
+> — Scrum Guide 2020
 
-## スプリント情報
-| 項目 | 内容 |
-|------|------|
-| スプリント番号 | Sprint 001 |
-| 開始日 | YYYY-MM-DD |
-| 終了日 | YYYY-MM-DD |
-| スプリント期間 | 2週間 |
+## Sprint Information
+| Item | Value |
+|---|---|
+| Sprint number | Sprint 001 |
+| Start date | YYYY-MM-DD |
+| End date | YYYY-MM-DD |
+| Duration | 2 weeks |
 
-## 選択したプロダクトバックログアイテム（What）
+## Selected Product Backlog Items (What)
+| PBI ID | Title | Estimate | Status |
+|---|---|---:|---|
+| PBI-XXX | (Title) | (Points) | Not Started |
 
-| PBI ID | タイトル | 見積もり | ステータス |
-|--------|----------|----------|------------|
-| PBI-XXX | （タイトル） | （ポイント） | 未着手 |
+## Task Breakdown (How)
+### PBI-XXX: (Title)
+| Task ID | Task | Owner | Estimate (h) | Status |
+|---|---|---|---:|---|
+| TASK-001 | (Task description) | (Owner) | (Hours) | Not Started |
 
-## タスク分解（How）
+## Status Legend
+- **Not Started**: Work has not begun.
+- **In Progress**: Work is underway.
+- **In Review**: Awaiting review.
+- **Done**: Meets the Definition of Done.
 
-### PBI-XXX: （タイトル）
-| タスクID | タスク名 | 担当者 | 見積もり(h) | ステータス |
-|----------|----------|--------|-------------|------------|
-| TASK-001 | （タスク名） | （担当者） | （時間） | 未着手 |
-
-## ステータス凡例
-- **未着手**: 作業開始前
-- **進行中**: 作業中
-- **レビュー中**: レビュー待ち
-- **完了**: 完成の定義を満たした
-
-## バーンダウン
-| 日付 | 残タスク数 | 残ポイント |
-|------|------------|------------|
+## Burndown
+| Date | Remaining tasks | Remaining points |
+|---|---:|---:|
 | Day 1 | - | - |

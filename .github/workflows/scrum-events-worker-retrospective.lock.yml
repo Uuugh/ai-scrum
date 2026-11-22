@@ -21,7 +21,7 @@
 #
 # For more information: https://github.github.com/gh-aw/introduction/overview/
 #
-# sprint-retrospective を独立コンテキストで実行し、既存PRブランチへ反映するworker
+# Worker that runs sprint retrospective in an independent context and applies it to the existing PR branch
 #
 # Resolved workflow manifest:
 #   Imports:
@@ -48,19 +48,19 @@ name: "Sprint Retrospective Worker"
   workflow_call:
     inputs:
       payload:
-        description: call-workflow が自動で渡すJSON payload
+        description: JSON payload passed automatically by call-workflow
         required: false
         type: string
       phase_name:
-        description: artifact prefix を一意化する固定フェーズ名
+        description: Fixed phase name used to make the artifact prefix unique
         required: true
         type: string
       pr_branch_name:
-        description: 継続更新対象のPRブランチ名
+        description: PR branch name targeted for continued updates
         required: true
         type: string
       pull_request_number:
-        description: 継続更新対象のPR番号
+        description: PR number targeted for continued updates
         required: true
         type: string
     outputs:
@@ -1082,7 +1082,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           WORKFLOW_NAME: "Sprint Retrospective Worker"
-          WORKFLOW_DESCRIPTION: "sprint-retrospective を独立コンテキストで実行し、既存PRブランチへ反映するworker"
+          WORKFLOW_DESCRIPTION: "Worker that runs sprint retrospective in an independent context and applies it to the existing PR branch"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
           script: |

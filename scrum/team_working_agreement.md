@@ -1,2 +1,3 @@
-- **アグリーメント1**
-順誦すべき合意事項、ルール、作業ポリシーなどを記載
+# Team Working Agreement
+
+No team agreements have been recorded yet. Add agreed policies and practices here.

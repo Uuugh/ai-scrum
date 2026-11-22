@@ -1,73 +1,33 @@
-# 完成の定義（Definition of Done）
+# Definition of Done
 
-> 完成の定義は、インクリメントがプロダクトに必要な品質基準を満たした状態を正式に記述したものである。
-> プロダクトバックログアイテムが完成の定義を満たした瞬間にインクリメントが誕生する。
-> — スクラムガイド 2020
+## Product
+CalendarStream Dashboard, built with Dart and Flutter under `project/front` and `project/back` from the dashboard requirements and their linked shared requirements.
 
-## 対象プロダクト
+Each item below must be answered Yes for its PBI to be done.
 
-（プロダクト名・技術スタック等を記載する）
+### Requirements and tests
+- The PBI maps to the source requirement IDs and adds no behavior beyond them.
+- The PBI acceptance criteria include its DSH and linked UIC, THM or DEF requirement mapping.
+- `project/test/` contains the requirement-to-test map and test evidence for every included requirement.
+- Every included acceptance criterion has a test with a clear pass or fail result.
+- All tests for the PBI pass on its agreed target platforms.
 
-## 完成の定義
+### Code quality
+- Dart and Flutter code follows the project's feature and layer boundaries.
+- No dependency is added without Product Owner approval.
 
-すべての項目が「はい」と判定できた場合に、そのプロダクトバックログアイテムは「完成」とみなす。
+### Runtime behavior
+- The web and desktop apps run as required by the mapped DSH requirements.
+- The local server follows DSH-13 and exposes no token or secret.
 
----
+### UI and localization
+- Every displayed label, heading, or note uses the cited message keys and translations.
+- Shared UI and theme behavior follows the linked requirements.
 
-### 1. コード品質
+### Documentation
+- English instructions explain how to build, test, and run the app.
+- The smoke check records the platform and result.
+- Made-up data is used in tests; no real schedule or credentials are recorded.
 
-| # | 基準 | 判定 |
-|---|------|------|
-| 1-1 | （コード品質に関する基準を記述） | はい / いいえ |
-
-### 2. テスト
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 2-1 | （テストに関する基準を記述） | はい / いいえ |
-
-### 3. ドキュメント
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 3-1 | （ドキュメントに関する基準を記述） | はい / いいえ |
-
-### 4. 動作確認
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 4-1 | （動作確認に関する基準を記述） | はい / いいえ |
-
-### 5. セキュリティ
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 5-1 | （セキュリティに関する基準を記述） | はい / いいえ |
-
-### 6. パフォーマンス
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 6-1 | （パフォーマンスに関する基準を記述） | はい / いいえ |
-
-### 7. UI/UX の品質
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 7-1 | （UI/UXに関する基準を記述） | はい / いいえ |
-
-### 8. データベース
-
-| # | 基準 | 判定 |
-|---|------|------|
-| 8-1 | （データベースに関する基準を記述） | はい / いいえ |
-
----
-
-## 補足事項
-
-- （補足事項を記載する）
-
-## 更新履歴
-
-更新履歴は [definition_of_done_history.md](definition_of_done_history.md) を参照。
+## History
+See [definition_of_done_history.md](definition_of_done_history.md).

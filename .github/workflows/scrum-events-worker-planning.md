@@ -3,19 +3,19 @@ on:
   workflow_call:
     inputs:
       payload:
-        description: call-workflow が自動で渡すJSON payload
+        description: JSON payload passed automatically by call-workflow
         required: false
         type: string
       phase_name:
-        description: artifact prefix を一意化する固定フェーズ名
+        description: Fixed phase name used to make the artifact prefix unique
         required: true
         type: string
       pr_branch_name:
-        description: 継続更新に使うPRブランチ名
+        description: PR branch name used for continued updates
         required: true
         type: string
       pull_request_number:
-        description: 継続更新対象のPR番号
+        description: PR number targeted for continued updates
         required: true
         type: string
   steps:
@@ -31,7 +31,7 @@ on:
           printf 'pr_branch_name=%s\n' "$PR_BRANCH_NAME"
           printf 'pull_request_number=%s\n' "$PULL_REQUEST_NUMBER"
         } >> "$GITHUB_OUTPUT"
-description: スプリントプランニングを独立コンテキストで実行し、既存PRブランチへ反映するworker
+description: Worker that runs sprint planning in an independent context and applies it to the existing PR branch
 engine:
   id: copilot
   model: claude-opus-4.6
@@ -75,23 +75,23 @@ jobs:
 
 # Sprint Planning Worker
 
-このworkerは**単独で理解できる現在のリポジトリ状態と `${{ needs.pre_activation.outputs.phase_name }}`、`${{ needs.pre_activation.outputs.pr_branch_name }}`、`${{ needs.pre_activation.outputs.pull_request_number }}` だけ**を根拠に処理してください。過去の会話や他workerの内部推論には依存しません。
+This worker must use only the self-contained current repository state and `${{ needs.pre_activation.outputs.phase_name }}`, `${{ needs.pre_activation.outputs.pr_branch_name }}`, and `${{ needs.pre_activation.outputs.pull_request_number }}` as evidence. Do not rely on prior conversations or the internal reasoning of other workers.
 
-今回の役割は、スキル`/sprint-planning` を実行し、結果を既存の集約PRへ最初の成果物として積み増すことです。
+The role of this worker is to run the `/sprint-planning` skill and add the result as the first deliverable to the existing aggregate PR.
 
-# 実行ルール
+# Execution Rules
 
-1. ローカル作業ブランチ名は **`${{ needs.pre_activation.outputs.pr_branch_name }}`** を使ってください。
-2. 更新対象は **PR #`${{ needs.pre_activation.outputs.pull_request_number }}` のみ** です。他のPRを探索・更新しないでください。
-3. `push_to_pull_request_branch` を使う際は、**`pull_request_number` に `${{ needs.pre_activation.outputs.pull_request_number }}`、`branch` に `${{ needs.pre_activation.outputs.pr_branch_name }}`** を必ず指定してください。
-4. 新しいPRは絶対に作成しないでください。
-5. 変更対象は **リポジトリ全体** です。必要な既存ファイル更新や新規ファイル作成を行ってください。
-6. **このworkflowでは成果物更新が必須**です。既存ファイルを1件以上更新し、`push_to_pull_request_branch` を必ず1回実行してください。
-7. **`noop` で成功終了してはいけません。** 差分を作れない場合は、そのまま成功扱いにせず `missing_data` で不足情報や阻害要因を報告してください。
-8. 記録は日本語で簡潔に保ってください。
+1. Use **`${{ needs.pre_activation.outputs.pr_branch_name }}`** as the local work branch name.
+2. Update only **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`**. Do not search for or update any other PR.
+3. When using `push_to_pull_request_branch`, always set **`pull_request_number` to `${{ needs.pre_activation.outputs.pull_request_number }}`** and **`branch` to `${{ needs.pre_activation.outputs.pr_branch_name }}`**.
+4. Never create a new PR.
+5. The change scope is **the entire repository**. Update existing files or create new files as needed.
+6. **Artifact updates are mandatory in this workflow.** Update at least one existing file and call `push_to_pull_request_branch` exactly once.
+7. **Do not finish successfully with `noop`.** If no diff can be created, do not treat it as success; report missing information or blockers with `missing_data`.
+8. Keep records concise and in English.
 
-# 作業
+# Work
 
-1. 必要なら `git switch -c "${{ needs.pre_activation.outputs.pr_branch_name }}"` 相当で作業ブランチへ切り替える
-2. `/sprint-planning` スキルを実行する
-3. 変更内容を確認し、`push_to_pull_request_branch` で **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`** に push する
+1. If needed, switch to the work branch using `git switch -c "${{ needs.pre_activation.outputs.pr_branch_name }}"`.
+2. Run the `/sprint-planning` skill.
+3. Review the changes and push them with `push_to_pull_request_branch` to **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`**.

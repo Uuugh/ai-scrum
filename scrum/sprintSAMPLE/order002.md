@@ -1,13 +1,13 @@
-■ ちゃんと品質が担保されているよ、というためのドキュメントを見直し。例えば
- - アーキテクチャ全体像
- - テスト結果と報告資料
-あたりがほしい。あ、資料はpptxがいいですね。これは次のスプリントから必ず入れてください。プロジェクトのdocsにつくってね。
+Please review the documents that demonstrate quality assurance, including:
+- The overall architecture
+- Test results and reports
 
-■ 成果物として、基本的な概要レベルでもいいので、設計書はprojectのdocsにつくってほしいなぁ。わかんないじゃん。今どうなってるのか。
+The reports should be PowerPoint presentations (`.pptx`). Include them starting with the next sprint and place them under `project/docs`.
 
-■ あとスプリント成果物として、できたものの画面キャプチャーがほしい。画像をいれたexcelファイルがいいな。各シートが各画面（大事なものだけでいいから）
-playwright cliとか使ってさ。キャプチャーとれないかな？
+Please also create a basic design document under `project/docs` so the current design is understandable.
 
-■ 開発中はテストデータもいれてほしい。そんなに多くなくていいから、画面の確認用にそれなりに見えるように。
+For sprint deliverables, provide screenshots of the completed work in an Excel workbook. Important screens are sufficient; use one worksheet per screen. Could Playwright CLI be used to capture them?
 
-■ backのトップにアクセスしたらfrontのビルド成果物を渡せるようにできないかな？buildしてればbackの起動だけで画面が確認したいな
+Add a small amount of realistic-looking test data during development so the screens can be reviewed.
+
+Can the backend serve the built frontend at its root path, so that after a frontend build the app can be inspected by starting only the backend?

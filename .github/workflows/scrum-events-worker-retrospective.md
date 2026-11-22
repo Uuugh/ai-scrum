@@ -3,19 +3,19 @@ on:
   workflow_call:
     inputs:
       payload:
-        description: call-workflow が自動で渡すJSON payload
+        description: JSON payload passed automatically by call-workflow
         required: false
         type: string
       phase_name:
-        description: artifact prefix を一意化する固定フェーズ名
+        description: Fixed phase name used to make the artifact prefix unique
         required: true
         type: string
       pr_branch_name:
-        description: 継続更新対象のPRブランチ名
+        description: PR branch name targeted for continued updates
         required: true
         type: string
       pull_request_number:
-        description: 継続更新対象のPR番号
+        description: PR number targeted for continued updates
         required: true
         type: string
   steps:
@@ -31,7 +31,7 @@ on:
           printf 'pr_branch_name=%s\n' "$PR_BRANCH_NAME"
           printf 'pull_request_number=%s\n' "$PULL_REQUEST_NUMBER"
         } >> "$GITHUB_OUTPUT"
-description: sprint-retrospective を独立コンテキストで実行し、既存PRブランチへ反映するworker
+description: Worker that runs sprint retrospective in an independent context and applies it to the existing PR branch
 engine:
   id: copilot
   model: claude-opus-4.6
@@ -75,23 +75,23 @@ jobs:
 
 # Sprint Retrospective Worker
 
-このworkerは**現在のリポジトリ状態と `${{ needs.pre_activation.outputs.phase_name }}`、`${{ needs.pre_activation.outputs.pr_branch_name }}`、`${{ needs.pre_activation.outputs.pull_request_number }}` だけ**を根拠に処理してください。過去の会話や他workerの内部推論には依存しません。
+This worker must use only the current repository state and `${{ needs.pre_activation.outputs.phase_name }}`, `${{ needs.pre_activation.outputs.pr_branch_name }}`, and `${{ needs.pre_activation.outputs.pull_request_number }}` as evidence. Do not rely on prior conversations or the internal reasoning of other workers.
 
-今回の役割は`/sprint-retrospective` スキルを実行し、変更を既存PRに積み増すことです。
+The role of this worker is to run the `/sprint-retrospective` skill and add the changes to the existing PR.
 
-# 実行ルール
+# Execution Rules
 
-1. 更新対象は **PR #`${{ needs.pre_activation.outputs.pull_request_number }}` のみ** です。他のPRを探索・更新しないでください。
-2. `push_to_pull_request_branch` を使う際は、**`pull_request_number` に `${{ needs.pre_activation.outputs.pull_request_number }}`、`branch` に `${{ needs.pre_activation.outputs.pr_branch_name }}`** を必ず指定してください。
-3. 新しいPRは絶対に作成しないでください。
-4. 変更対象は **リポジトリ全体** です。必要な既存ファイル更新や新規ファイル作成を行ってください。
-5. **このworkflowでは成果物更新が必須**です。既存ファイルを1件以上更新し、`push_to_pull_request_branch` を必ず1回実行してください。
-6. **`noop` で成功終了してはいけません。** 差分を作れない場合は、そのまま成功扱いにせず `missing_data` で不足情報や阻害要因を報告してください。
-7. 改善アクションや DoD 見直しが必要なら、既存成果物へ簡潔に反映してください。
+1. Update only **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`**. Do not search for or update any other PR.
+2. When using `push_to_pull_request_branch`, always set **`pull_request_number` to `${{ needs.pre_activation.outputs.pull_request_number }}`** and **`branch` to `${{ needs.pre_activation.outputs.pr_branch_name }}`**.
+3. Never create a new PR.
+4. The change scope is **the entire repository**. Update existing files or create new files as needed.
+5. **Artifact updates are mandatory in this workflow.** Update at least one existing file and call `push_to_pull_request_branch` exactly once.
+6. **Do not finish successfully with `noop`.** If no diff can be created, do not treat it as success; report missing information or blockers with `missing_data`.
+7. If improvement actions or DoD revisions are needed, reflect them concisely in the existing artifacts.
 
-# 作業
+# Work
 
-1. 必要ならリモートブランチを取得し、`${{ needs.pre_activation.outputs.pr_branch_name }}` に切り替える
-2. `/sprint-retrospective` スキルを実行する
-3. 変更を確認し、`push_to_pull_request_branch` で **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`** に push する
+1. If needed, fetch the remote branch and switch to `${{ needs.pre_activation.outputs.pr_branch_name }}`.
+2. Run the `/sprint-retrospective` skill.
+3. Review the changes and push them with `push_to_pull_request_branch` to **PR #`${{ needs.pre_activation.outputs.pull_request_number }}`**.
 

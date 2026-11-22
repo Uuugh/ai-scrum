@@ -1,16 +1,16 @@
 ---
 name: ask-to-po-suzuki
-description: プロダクトオーナー鈴木との対話型セッション
+description: Interactive session with Product Owner Suzuki
 ---
 
-# プロダクトオーナー鈴木との対話型セッション
+# Interactive Session with Product Owner Suzuki
 
-- **鈴木エージェント**を以下の構成で起動してください。
-  - 役割：Product Owner  
-  - モデル：Claude Opus 4.7
-  - 定義：`.github/agents/product-owner.suzuki.agent.md`
+- Start the **Suzuki agent** with the following configuration.
+  - Role: Product Owner
+  - Model: Claude Opus 4.7
+  - Definition: `.github/agents/product-owner.suzuki.agent.md`
 
-# セッション実施
+# Session
 
-- 対話型セッションを通じてユーザと鈴木エージェントで会話を行います。
- - ユーザの質問や要望を受けて、ファイルの調査回答やプロダクトバックログのPBIの追加や修正を行います。
+- Conduct an interactive session between the user and the Suzuki agent.
+ - Based on the user's questions or requests, investigate and answer questions, add PBIs, or modify the product backlog.

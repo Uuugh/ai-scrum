@@ -1,79 +1,79 @@
 ---
 name: sprint-retrospective
-description: スプリントレトロスペクティブを実施する。個人・相互作用・プロセス・ツール・完成の定義の観点で振り返り、Keep/Problem/Tryの分析と改善アクションの特定を行う。スプリント最後のイベントに使用する。
+description: Conduct a sprint retrospective. Reflect on individuals, interactions, process, tools, and the Definition of Done, analyze Keep/Problem/Try items, and identify improvement actions. Use for the final event of a sprint.
 ---
 
-# スプリントレトロスペクティブ実施
+# Conduct the Sprint Retrospective
 
-"準備"で起動した各サブエージェントを下記の指示通りに利用し、スプリントレトロスペクティブを実施してください。
+Use each sub-agent started in "Preparation" according to the instructions below to conduct the sprint retrospective.
 
-## 準備
-- サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、伊藤エージェント(`.github/agents/developer.ito.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、田中エージェント(`.github/agents/developer.tanaka.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、小林エージェント(`.github/agents/reviewer.kobayashi.agent.md`)をモデル"GPT-5.5"で実行します。
+## Preparation
+- Run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Ito agent (`.github/agents/developer.ito.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Tanaka agent (`.github/agents/developer.tanaka.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Kobayashi agent (`.github/agents/reviewer.kobayashi.agent.md`) as a sub-agent with the model "GPT-5.5".
 
-山本と中村は契約の都合でレトロスペクティブには参加できませんが、田中・伊藤経由でフィードバックがあれば提供している前提で進めます。
+Yamamoto and Nakamura cannot participate in the retrospective due to contractual constraints. Proceed on the assumption that any feedback will be provided through Tanaka and Ito.
 
-## 対象スプリント
-scrumフォルダから最新のsprintXXX(XXXは連番)を対象とします。
+## Target Sprint
+Target the latest sprintXXX in the scrum folder (XXX is sequential).
 
-## 事前確認
-1. `scrum/${sprint_number}/sprint_backlog.md` を読み、スプリントの実績を確認する
-2. `scrum/${sprint_number}/sprint_review.md` を読み、レビュー結果を確認する
-3. `scrum/impediment_log.csv` を読み、障害物の発生・解決状況を確認する
-4. `scrum/velocity.csv` を読み、ベロシティの推移を確認する
-5. `scrum/definition_of_done.md` を読み、完成の定義を確認する
+## Pre-check
+1. Read `scrum/${sprint_number}/sprint_backlog.md` and review sprint results.
+2. Read `scrum/${sprint_number}/sprint_review.md` and review the sprint review outcome.
+3. Read `scrum/impediment_log.csv` and check impediment occurrence and resolution.
+4. Read `scrum/velocity.csv` and review the velocity trend.
+5. Read `scrum/definition_of_done.md` and review the Definition of Done.
 
-## レトロスペクティブの実施
+## Conduct the Retrospective
 
-高橋エージェントがファシリテートし、以下の検査を行ってください：
+Have the Takahashi agent facilitate and perform the following reviews:
 
-### 1. 検査対象
-スクラムガイドに基づき、鈴木エージェント、伊藤エージェント、田中エージェントが以下の観点でスプリントを振り返ります：
-- **個人**: メンバーの働き方、モチベーション、スキル
-- **相互作用**: チーム内のコミュニケーション、協力体制
-- **プロセス**: スクラムイベントの実施状況、ワークフロー
-- **ツール**: 使用しているツールの効果性
-- **完成の定義**: 現在の完成の定義の妥当性
+### 1. Inspection Scope
+Based on the Scrum Guide, have the Suzuki, Ito, and Tanaka agents reflect on the sprint from these perspectives:
+- **Individuals**: Member work patterns, motivation, and skills.
+- **Interactions**: Team communication and collaboration.
+- **Process**: Scrum event execution and workflows.
+- **Tools**: Effectiveness of tools in use.
+- **Definition of Done**: Validity of the current Definition of Done.
 
-### 2. Keep（良かったこと）
-- 伊藤エージェント、田中エージェントの視点で、維持すべき良いプラクティスを挙げてください
-- 鈴木エージェントの視点で、うまくいった連携を挙げてください
+### 2. Keep
+- From the perspectives of the Ito and Tanaka agents, identify good practices to preserve.
+- From the Suzuki agent's perspective, identify collaboration that worked well.
 
-### 3. Problem（問題だったこと）
-- 伊藤エージェント、田中エージェントの視点で、困難だった点や問題を挙げてください
-- 高橋エージェントの視点で、プロセス上の課題を挙げてください
+### 3. Problem
+- From the perspectives of the Ito and Tanaka agents, identify difficulties and problems.
+- From the Takahashi agent's perspective, identify process issues.
 
-### 4. Try（試したいこと）
-- チーム全体で、次のスプリントで試したい改善策を議論してください
-- 最もインパクトのある改善を優先する
+### 4. Try
+- Discuss improvement measures the whole team wants to try in the next sprint.
+- Prioritize improvements with the greatest impact.
 
-### 5. 改善アクションアイテムの決定
-- 具体的なアクション、担当者、期限を決定する
-- 最もインパクトのある改善はできるだけ早く対処する
-- 必要に応じて次のスプリントバックログに追加する
-- 改善アクション項目から、"卒業"となったアクションは、`scrum/scrum_team_culture`に追記する
+### 5. Decide Improvement Action Items
+- Decide on specific actions, owners, and deadlines.
+- Address the highest-impact improvements as soon as possible.
+- Add them to the next sprint backlog if needed.
+- For improvement actions that have "graduated," add them to `scrum/scrum_team_culture`.
 
-### 6. 完成の定義の見直し
-- 完成の定義に変更が必要かチームで議論する
-- 変更がある場合は `scrum/definition_of_done.md` を更新する
+### 6. Review the Definition of Done
+- Have the team discuss whether the Definition of Done needs to change.
+- If it changes, update `scrum/definition_of_done.md`.
 
-### 7. 振り返り結果監査
-- 小林エージェントを使い、スプリントレトロスペクティブの結果を監査してください
-  - 更新すべきファイルがきちんと更新されているか、抜け漏れが無いかをチェックします。
+### 7. Audit the Retrospective Results
+- Use the Kobayashi agent to audit the sprint retrospective results.
+  - Check that every file requiring an update was updated correctly and that nothing was missed.
 
-### 8. リポジトリへの反映
-- 高橋エージェントを使い、必要なファイルをマージして、全てmainリポジトリに反映させます。
- - 最後に git pull origin main を実行し、差分を確認・取得します。
+### 8. Apply Changes to the Repository
+- Use the Takahashi agent to merge the necessary files and apply everything to the main repository.
+ - Finally, run git pull origin main and review and retrieve the differences.
 
-## 記録
-- `scrum/${sprint_number}/sprint_retrospective.md` にレトロスペクティブ結果を記録する
-- 解決済みの障害物は `scrum/impediment_log_resolved.csv` に移動する
+## Recording
+- Record the retrospective outcome in `scrum/${sprint_number}/sprint_retrospective.md`.
+- Move resolved impediments to `scrum/impediment_log_resolved.csv`.
 
-## 注意事項
-- 個人を批判するのではなく、プロセスとシステムの改善に集中する
-- 心理的安全性を確保し、全員が率直に意見を述べられる場にする
-- スプリントレトロスペクティブでスプリントは終了する
-- 記録は必要な要素を落とさずに、一方でできるだけ簡潔に短く記載すること
+## Notes
+- Focus on improving the process and system, not criticizing individuals.
+- Ensure psychological safety so everyone can speak candidly.
+- The sprint ends with the sprint retrospective.
+- Preserve all necessary elements in the record while keeping it as concise as possible.

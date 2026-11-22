@@ -1,1 +1,1 @@
-現状は特に指定なし
+No additional mandatory deliverables are currently specified.

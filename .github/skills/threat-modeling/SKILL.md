@@ -1,62 +1,61 @@
 ---
 name: threat-modeling
 description: >
-  STRIDE手法に基づき、システムに対する脅威を体系的に特定・分類し、リスクを評価する。
-  データフロー図（DFD）の作成、脅威の特定、リスクスコアの算出、脅威モデリング結果の文書化を行う。
-  「脅威モデリング」「STRIDE分析」「脅威分析」「リスク評価」「DFD」等のキーワードで使用する。
+  Systematically identify and classify threats to a system using the STRIDE method and assess risk.
+  Create data flow diagrams (DFDs), identify threats, calculate risk scores, and document threat-modeling results.
+  Trigger keywords include "threat modeling," "STRIDE analysis," "threat analysis," "risk assessment," and "DFD."
 ---
 
-# 脅威モデリング（STRIDE）
+# Threat Modeling (STRIDE)
 
-## 目的
+## Purpose
+Systematically identify and classify threats to a system using the STRIDE method and assess risk.
 
-STRIDE手法に基づき、システムに対する脅威を体系的に特定・分類し、リスクを評価する。
+## STRIDE Threat Categories
 
-## STRIDE脅威カテゴリ
+| Threat Category | Description | Recommended Mitigation |
+|-----------------|-------------|------------------------|
+| **S**poofing | Impersonation of an authorized user or system | Strengthen authentication (MFA, certificate authentication) |
+| **T**ampering | Unauthorized modification of data or code | Integrity checks, digital signatures |
+| **R**epudiation | Denial of actions | Audit logs, timestamps |
+| **I**nformation Disclosure | Access to unauthorized information | Encryption, access control |
+| **D**enial of Service | Disruption of service availability | Rate limiting, scaling, WAF |
+| **E**levation of Privilege | Unauthorized acquisition of privileges | Least privilege, input validation, RBAC |
 
-| 脅威カテゴリ | 説明 | 対策の方向性 |
-|-------------|------|-------------|
-| **S**poofing（なりすまし） | 正当なユーザ・システムへのなりすまし | 認証の強化（MFA、証明書認証） |
-| **T**ampering（改ざん） | データやコードの不正な変更 | 整合性チェック、デジタル署名 |
-| **R**epudiation（否認） | アクションの否認 | 監査ログ、タイムスタンプ |
-| **I**nformation Disclosure（情報漏洩） | 権限のない情報へのアクセス | 暗号化、アクセス制御 |
-| **D**enial of Service（サービス拒否） | サービスの可用性を妨害 | レート制限、スケーリング、WAF |
-| **E**levation of Privilege（権限昇格） | 不正な権限の取得 | 最小権限、入力検証、RBAC |
+## Instructions
 
-## 作業指示
+1. **Create or verify the system data flow diagram (DFD)**
+   - Identify and reflect the following elements in the DFD:
+     - External entities (users, external APIs, external services)
+     - Processes (application components, microservices)
+     - Data stores (databases, file storage, caches)
+     - Data flows (communication paths, protocols)
+   - Clearly delineate trust boundaries.
 
-1. **システムのデータフロー図（DFD）を作成・確認する**
-   - 以下の要素を特定しDFDに反映する：
-     - 外部エンティティ（ユーザ、外部API、外部サービス）
-     - プロセス（アプリケーションコンポーネント、マイクロサービス）
-     - データストア（データベース、ファイルストレージ、キャッシュ）
-     - データフロー（通信経路、プロトコル）
-   - 信頼境界（Trust Boundary）を明確に線引きする
+2. **Apply STRIDE analysis to each component**
+   - Apply all six threat categories to each element in the DFD.
+   - Record for each threat:
+     - A concrete threat scenario
+     - The expected impact (confidentiality, integrity, or availability)
+     - Existing mitigations
+     - Residual risk
 
-2. **各コンポーネントにSTRIDE分析を適用する**
-   - DFD上の各要素に対して、6つの脅威カテゴリを適用する
-   - 各脅威について以下を記録する：
-     - 脅威の具体的なシナリオ
-     - 想定される影響（機密性・完全性・可用性への影響）
-     - 既存の対策の有無
-     - 残存リスクの評価
+3. **Perform risk assessment**
+   - Calculate a risk score for each threat: impact (1–5) × likelihood (1–5).
+   - Determine priority based on the risk score.
+   - Propose immediate mitigation for Critical/High risks.
 
-3. **リスク評価を実施する**
-   - 各脅威に対して、影響度（1-5）×可能性（1-5）のリスクスコアを算出する
-   - リスクスコアに基づき優先順位を決定する
-   - Critical/Highリスクの脅威については即時の対策を提案する
+4. **Document threat-modeling results**
+   - Create a report containing:
+     - Target system overview and DFD
+     - List of identified threats (classified by STRIDE)
+     - Risk assessment results (matrix format)
+     - Recommended mitigations and priorities
+     - Description of residual risks
 
-4. **脅威モデリング結果を文書化する**
-   - 以下の情報を含むレポートを作成する：
-     - 対象システムの概要とDFD
-     - 特定された脅威の一覧（STRIDE分類別）
-     - リスク評価結果（マトリクス形式）
-     - 推奨する対策と優先度
-     - 残存リスクの説明
+## Available Tools
 
-## 利用ツール
-
-| ツール名 | 用途 | 入手先 |
-|---------|------|--------|
-| Microsoft Threat Modeling Tool | DFD作成とSTRIDE分析 | https://aka.ms/threatmodelingtool |
-| OWASP Threat Dragon | オープンソースの脅威モデリング | https://owasp.org/www-project-threat-dragon/ |
+| Tool | Purpose | Source |
+|------|---------|--------|
+| Microsoft Threat Modeling Tool | DFD creation and STRIDE analysis | https://aka.ms/threatmodelingtool |
+| OWASP Threat Dragon | Open-source threat modeling | https://owasp.org/www-project-threat-dragon/ |

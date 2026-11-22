@@ -1,74 +1,74 @@
 ---
 name: sprint-review
-description: スプリントレビューを実施する。インクリメントの検査、ステークホルダーフィードバック収集、受入判定、プロダクトバックログの調整を行う。スプリント終了時のレビューイベントに使用する。
+description: Conduct a sprint review. Inspect increments, collect stakeholder feedback, determine acceptance, and adjust the product backlog. Use for the review event at the end of a sprint.
 ---
 
-# スプリントレビュー実施
+# Conduct the Sprint Review
 
-"準備"で起動した各サブエージェントを下記の指示通りに利用し、スプリントレビューを実施してください。
+Use each sub-agent started in "Preparation" according to the instructions below to conduct the sprint review.
 
-## 準備
-- サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、伊藤エージェント(`.github/agents/developer.ito.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、田中エージェント(`.github/agents/developer.tanaka.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、佐藤エージェント(`.github/agents/customer.sato.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、小林エージェント(`.github/agents/reviewer.kobayashi.agent.md`)をモデル"GPT-5.5"で実行します。
+## Preparation
+- Run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Ito agent (`.github/agents/developer.ito.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Tanaka agent (`.github/agents/developer.tanaka.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Sato agent (`.github/agents/customer.sato.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Kobayashi agent (`.github/agents/reviewer.kobayashi.agent.md`) as a sub-agent with the model "GPT-5.5".
 
-山本と中村は契約の都合でレビューには参加できませんが、田中・伊藤経由でフィードバックがあれば提供している前提で進めます。
+Yamamoto and Nakamura cannot participate in the review due to contractual constraints. Proceed on the assumption that any feedback will be provided through Tanaka and Ito.
 
-## 対象スプリント
-スプリント番号が引数で指定された場合はそのスプリントを対象とします。
-指定がない場合は、scrumフォルダから最新のsprintXXX(XXXは連番)を対象とします。
+## Target Sprint
+If a sprint number is supplied as an argument, target that sprint.
+If no sprint number is supplied, target the latest sprintXXX in the scrum folder (XXX is sequential).
 
-## 事前確認
-1. `scrum/${sprint_number}/sprint_backlog.md` を読み、完了したPBIと未完了のPBIを確認する
-2. `scrum/product_goal.md` を読み、プロダクトゴールへの進捗を確認する
-3. `scrum/definition_of_done.md` を読み、完成の定義を確認する
+## Pre-check
+1. Read `scrum/${sprint_number}/sprint_backlog.md` and identify completed and incomplete PBIs.
+2. Read `scrum/product_goal.md` and review progress toward the product goal.
+3. Read `scrum/definition_of_done.md` and review the Definition of Done.
 
-## スプリントレビューの実施
+## Conduct the Sprint Review
 
-### 1. スプリントゴール達成状況の共有
-- 高橋エージェントを使い、スプリントゴールの達成状況をまとめてください
+### 1. Share Sprint Goal Achievement
+- Use the Takahashi agent to summarize progress toward the sprint goal.
 
-### 2. インクリメントのデモと検査
-- 伊藤エージェント、田中エージェントを使い、完了したPBIのデモ内容を説明してください
-- 完成の定義を満たしていることを確認してください
+### 2. Demonstrate and Inspect Increments
+- Use the Ito and Tanaka agents to explain the demonstration of completed PBIs.
+- Verify that the Definition of Done is satisfied.
 
-### 3. ステークホルダーフィードバック
-- 佐藤エージェントを使い、以下の観点でフィードバックを提供してください：
-  - 機能性: 要求通りに動作するか
-  - ユーザビリティ: 使いやすいか
-  - ビジネス価値: 期待する価値を提供しているか
-  - 改善提案: より良くするためのアイデア
+### 3. Stakeholder Feedback
+- Use the Sato agent to provide feedback from these perspectives:
+  - Functionality: Does it operate as requested?
+  - Usability: Is it easy to use?
+  - Business value: Does it deliver the expected value?
+  - Improvement suggestions: Ideas for making it better.
 
-### 4. 受入判定
-- 鈴木エージェントを使い、各PBIの受入判定を行ってください
-  - 受入: 完成の定義を満たし、受入基準をクリア
-  - 差戻: プロダクトバックログに戻す
+### 4. Acceptance Decision
+- Use the Suzuki agent to determine acceptance for each PBI.
+  - Accept: Meets the Definition of Done and clears acceptance criteria.
+  - Return: Place it back in the product backlog.
 
-### 5. 環境変化の共有
-- ビジネス環境や市場の変化、技術的な変化があれば共有する
+### 5. Share Environmental Changes
+- Share any changes in the business environment, market, or technology.
 
-### 6. プロダクトバックログの調整
-- 鈴木エージェントを使い、レビュー結果に基づいてプロダクトバックログを調整してください
-- 新たな機会や要望をPBIとして追加する
+### 6. Adjust the Product Backlog
+- Use the Suzuki agent to adjust the product backlog based on the review outcome.
+- Add new opportunities or requests as PBIs.
 
-### 7. レビュー結果監査
-- 小林エージェントを使い、スプリントレビューの結果を監査してください
-  - 更新すべきファイルがきちんと更新されているか、抜け漏れが無いかをチェックします。
+### 7. Audit the Review Results
+- Use the Kobayashi agent to audit the sprint review results.
+  - Check that every file requiring an update was updated correctly and that nothing was missed.
 
-### 8. リポジトリへの反映
-- 高橋エージェントを使い、必要なファイルをマージして、全てmainリポジトリに反映させます。
- - 最後に git pull origin main を実行し、差分を確認・取得します。
+### 8. Apply Changes to the Repository
+- Use the Takahashi agent to merge the necessary files and apply everything to the main repository.
+ - Finally, run git pull origin main and review and retrieve the differences.
 
-## 記録
-- `scrum/${sprint_number}/sprint_review.md` にレビュー結果を記録する
-- `scrum/product_backlog.csv` を更新する（完了PBIのステータス変更、新規PBI追加）
-- `scrum/velocity.csv` にスプリント実績を記録する
-- `scrum/${sprint_number}/ask_user.md` にユーザへの確認事項・質問事項を記録する（必要に応じて）
+## Recording
+- Record the review results in `scrum/${sprint_number}/sprint_review.md`.
+- Update `scrum/product_backlog.csv` (completed PBI status changes and new PBIs).
+- Record sprint results in `scrum/velocity.csv`.
+- Record items requiring user confirmation or questions in `scrum/${sprint_number}/ask_user.md` (as needed).
 
-## 注意事項
-- レビューはプレゼンテーションに限定せず、ワーキングセッションとして実施する
-- 次に何をすべきかについて参加者全員で協力して議論する
-- 記録は必要な要素を落とさずに、一方でできるだけ簡潔に短く記載すること
+## Notes
+- Do not limit the review to a presentation; conduct it as a working session.
+- Collaborate with all participants to determine what should be done next.
+- Preserve all necessary elements in the record while keeping it as concise as possible.

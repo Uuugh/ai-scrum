@@ -1,29 +1,29 @@
-## PRラベルルール（GitHub Copilot Coding Agent用）
+## PR Label Rules (for GitHub Copilot Coding Agent)
 
-Issueに `sprint/*` または `test/*` ラベルが付いている場合、作成するPRにも同じラベルを付与すること。
-PRの本文には、対応するIssue番号を `Fixes #<issue番号>` の形式で必ず含めること。
+If an issue has a `sprint/*` or `test/*` label, apply the same label to the PR.
+The PR body must include the related issue number in the form `Fixes #<issue-number>`.
 
-## Git worktree運用ルール
+## Git Worktree Rules
 
-複数エージェントが並行作業するため、**ブランチ作業は必ず `git worktree` を使う**。同一ディレクトリでの `git checkout` によるブランチ切替は禁止（他エージェントの作業を破壊するため）。
+Because multiple agents may work in parallel, **always use a dedicated `git worktree` for branch work**. Do not switch branches with `git checkout` in the same directory; that could disrupt another agent's work.
 
-### ルール
+### Rules
 
-- メインworktree（`c:\Dev\ai-scrum-template`）は `main` 固定。作業はメインリポジトリの**親ディレクトリ**に作成した専用worktreeで行う。
-- 1作業 = 1worktree = 1ブランチ。
-- ディレクトリ名: `..\ai-scrum-template-<agent>-<topic>` / ブランチ名: `feature/<agent>/<topic>`（agentは小文字: `ito`, `tanaka`, `yamamoto`, `nakamura`, `watanabe` など）
-- 作業前に `git worktree list` で衝突確認。`node_modules` / `.venv` はworktreeごとに作り直す（共有しない）。
+- Keep the main worktree (`c:\Dev\ai-scrum-template`) on `main`. Work in a dedicated worktree created in the main repository's **parent directory**.
+- One task = one worktree = one branch.
+- Directory: `..\ai-scrum-template-<agent>-<topic>`; branch: `feature/<agent>/<topic>` (lowercase agent name, such as `ito`, `tanaka`, `yamamoto`, `nakamura`, or `watanabe`).
+- Before starting, check for conflicts with `git worktree list`. Recreate `node_modules` and `.venv` in each worktree; do not share them.
 
-### 手順
+### Procedure
 
 ```bash
-# 作成（メインworktreeから）
+# Create from the main worktree
 cd /c/Dev/ai-scrum-template && git fetch origin && git pull --ff-only origin main
 git worktree add ../ai-scrum-template-<agent>-<topic> -b feature/<agent>/<topic> origin/main
 
-# 作業・PR作成はworktree内で実施
+# Work and create the PR inside the worktree
 
-# マージ後のクリーンアップ
+# Clean up after merging
 cd /c/Dev/ai-scrum-template
 git worktree remove ../ai-scrum-template-<agent>-<topic>
 git branch -d feature/<agent>/<topic>

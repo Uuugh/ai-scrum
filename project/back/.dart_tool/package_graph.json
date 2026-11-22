@@ -1,0 +1,14 @@
+{
+  "roots": [
+    "dashboard_back"
+  ],
+  "packages": [
+    {
+      "name": "dashboard_back",
+      "version": "0.0.0",
+      "dependencies": [],
+      "devDependencies": []
+    }
+  ],
+  "configVersion": 1
+}

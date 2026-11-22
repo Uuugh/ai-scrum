@@ -1,5 +1,5 @@
-# 文化定着プラクティス
+# Scrum Team Culture Practices
 
-## 1. (タイトル)
+## 1. (Title)
 
-(内容)
+(Content)

@@ -1,5 +1,6 @@
-## 更新履歴
+## Change History
 
-| 日付 | 更新内容 | 更新者 |
+| Date | Change | Author |
 |------|----------|--------|
+| 2026-11-21 | Drafted Definition of Done for the CalendarStream dashboard trial | Assistant refinement draft |
 ||||

@@ -1,30 +1,30 @@
 ---
 name: adhoc-sprint
-description: ユーザからの突発的な要望に対応するスクラムチーム作業
+description: Scrum team work for handling unexpected requests from users
 ---
 
-## 準備
-- サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、伊藤エージェント(`.github/agents/developer.ito.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、田中エージェント(`.github/agents/developer.tanaka.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、山本エージェント(`.github/agents/contractor.yamamoto.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、中村エージェント(`.github/agents/contractor.nakamura.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、小林エージェント(`.github/agents/reviewer.kobayashi.agent.md`)をモデル"GPT-5.5"で実行します。
+## Preparation
+- Run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Ito agent (`.github/agents/developer.ito.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Tanaka agent (`.github/agents/developer.tanaka.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Yamamoto agent (`.github/agents/contractor.yamamoto.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Nakamura agent (`.github/agents/contractor.nakamura.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Kobayashi agent (`.github/agents/reviewer.kobayashi.agent.md`) as a sub-agent with the model "GPT-5.5".
 
-## セッション実施
+## Session
 
-- ユーザからのリクエストを鈴木エージェントが受け取ります。
-- 鈴木エージェントは内容を確認し、適切なサブエージェント（伊藤、田中、高橋、山本、中村、小林）にタスクを割り振ります。
- - サブエージェントは作業に対して、最新の情報・公式情報の裏どりを取りながら作業を行います。
- - 並列でのタスク処理を行うことができます
- - 鈴木エージェントで回答できる内容は、直接ユーザに回答します。
-- 鈴木エージェントが、タスクの結果をもとにユーザのリクエストに回答できるか確認します。
-  - 回答できる場合は、ユーザに回答します。
-  - 回答できない場合は、タスクの結果をもとに追加のタスクを割り振ります。
-  - このプロセスを繰り返します。もし3回繰り返しても回答できない場合は、ユーザにその旨を伝えます。
-- 小林エージェントが、タスクの結果やユーザへの回答内容をレビューします。指摘がある場合は、鈴木エージェントに修正リクエストを送ります。鈴木エージェントは、必要に応じてサブエージェントに修正タスクを割り振ります。
- - 小林エージェントのレビューで指摘がなくなるまでこのプロセスを繰り返します。
+- The Suzuki agent receives the user's request.
+- The Suzuki agent verifies the content and assigns tasks to the appropriate sub-agents (Ito, Tanaka, Takahashi, Yamamoto, Nakamura, or Kobayashi).
+ - While performing the work, sub-agents verify information against the latest data and official sources.
+ - Sub-agents may process tasks in parallel.
+ - If the Suzuki agent can answer directly, it responds to the user.
+- The Suzuki agent determines whether it can answer the user's request based on the task results.
+  - If it can, it answers the user.
+  - If it cannot, it assigns additional tasks based on the results.
+  - Repeat this process. If no answer is possible after three repetitions, inform the user accordingly.
+- The Kobayashi agent reviews the task results and the proposed response to the user. If issues are found, it sends a correction request to the Suzuki agent. The Suzuki agent assigns any necessary correction tasks to sub-agents.
+ - Repeat this process until the Kobayashi agent has no further review findings.
 
-**タスクの割り振りや回答の際には、必要に応じてサブエージェント同士で情報共有や協力を行ってください。**
+**When assigning tasks or preparing answers, sub-agents should share information and collaborate as needed.**
 

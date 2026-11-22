@@ -1,28 +1,26 @@
-# デイリースクラム記録 - Sprint 001
+# Daily Scrum Record - Sprint 001
 
-> デイリースクラムの目的は、スプリントゴールに対する進捗を検査し、
-> 必要に応じてスプリントバックログを適応させ、これから予定している作業を調整することである。
-> デイリースクラムは開発者のための15分のイベントである。
-> — スクラムガイド 2020
+> The purpose of the Daily Scrum is to inspect progress toward the Sprint Goal, adapt the Sprint Backlog as needed, and adjust upcoming work. It is a 15-minute event for the Developers.
+> — Scrum Guide 2020
 
 ---
 
-## YYYY-MM-DD（Day 1）
+## YYYY-MM-DD (Day 1)
 
-### 参加者
-- （参加者を列挙）
+### Participants
+- (List participants.)
 
-### 進捗と計画
-| メンバー | 昨日やったこと | 今日やること | 障害物 |
-|----------|----------------|--------------|--------|
-| （名前） | （内容） | （内容） | なし / （内容） |
+### Progress and Plan
+| Member | Work completed yesterday | Plan for today | Impediment |
+|---|---|---|---|
+| (Name) | (Work) | (Work) | None / (Details) |
 
-### スプリントゴールへの進捗
-（スプリントゴールに対する全体的な進捗状況を記載）
+### Progress Toward the Sprint Goal
+(Summarize overall progress toward the Sprint Goal.)
 
-### 識別された障害物
-- （障害物があれば記載 → impediment_log.csv に追加）
+### Identified Impediments
+- (Record any impediment and add it to `impediment_log.csv`.)
 
 ---
 
-<!-- 以降、日次で追記していく -->
+<!-- Append a new entry each day. -->

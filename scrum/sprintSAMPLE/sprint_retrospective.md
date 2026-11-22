@@ -1,35 +1,31 @@
-# スプリントレトロスペクティブ記録 - Sprint 001
+# Sprint Retrospective Record - Sprint 001
 
-## 基本情報
-| 項目 | 内容 |
-|------|------|
-| 日時 | YYYY-MM-DD HH:MM - HH:MM |
-| 参加者 | PO: / SM: / Dev: |
-| タイムボックス | 最大3時間（1ヶ月スプリントの場合） |
+## Basic Information
+| Item | Value |
+|---|---|
+| Date and time | YYYY-MM-DD HH:MM - HH:MM |
+| Participants | PO: / SM: / Developers: |
+| Timebox | Up to 3 hours for a one-month Sprint |
 
-> スプリントレトロスペクティブの目的は、品質と効果を高める方法を計画することである。
-> スクラムチームは、個人、相互作用、プロセス、ツール、完成の定義に関して、
-> 前回のスプリントがどうだったかを検査する。
-> — スクラムガイド 2020
+> The purpose of the Sprint Retrospective is to plan ways to increase quality and effectiveness. The Scrum Team inspects how the previous Sprint went with regard to individuals, interactions, processes, tools, and the Definition of Done.
+> — Scrum Guide 2020
 
-## 良かったこと（Keep）
-- （良かった点を列挙）
+## Keep
+- (List what went well and should continue.)
 
-## 問題だったこと（Problem）
-- （問題点を列挙）
+## Problem
+- (List problems and difficulties.)
 
-## 試したいこと（Try）
-- （改善のために試したいアクションを列挙）
+## Try
+- (List actions to try for improvement.)
 
-## 改善アクションアイテム
-| # | アクション | 担当 | 期限 | ステータス |
-|---|------------|------|------|------------|
-| 1 | （アクション内容） | （担当者） | （期限） | 未着手 |
+## Improvement Actions
+| # | Action | Owner | Due date | Status |
+|---|---|---|---|---|
+| 1 | (Action) | (Owner) | (Due date) | Not Started |
 
-> スクラムチームは、効果を高めるために最も有用な変更を特定する。
-> 最もインパクトのある改善はできるだけ早く対処される。
-> それらは次のスプリントのスプリントバックログに追加されることもある。
-> — スクラムガイド 2020
+> The Scrum Team identifies the most useful changes to improve effectiveness. The most impactful improvements are addressed as soon as possible and may be added to the next Sprint Backlog.
+> — Scrum Guide 2020
 
-## 完成の定義の見直し
-（完成の定義に変更が必要な場合はここに記載）
+## Definition of Done Review
+(Record any changes needed to the Definition of Done.)

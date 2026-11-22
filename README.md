@@ -1,8 +1,6 @@
 # AI Scrum Template
 
-> **🇯🇵 日本語版はこちら → [README_jp.md](README_jp.md)**
-
-> **⚠️ Note:** This template currently operates entirely in **Japanese** (prompts, agent output, and artifacts). See [Language Notice](#️-language-notice--currently-japanese-only) for details on how to switch to English.
+> Repository guidance and Scrum artifacts are maintained in English. The historical `README_legacy.md` filename is retained for compatibility.
 
 A project template where an AI agent team executes Scrum development.  
 Leveraging GitHub Copilot's custom skills and agents, it automates a development process that follows the **Scrum Guide 2020**.
@@ -281,18 +279,3 @@ The following settings must be configured on your repository:
 The prompts and skill definitions in this template are currently tuned for **Claude Opus 4.6** and **GPT-5.4**.  
 If you are using a different AI model, you may need to adjust the prompts or skill files to suit your model's characteristics. Results may vary depending on the model used.  
 Also, since this template heavily uses AI agents and consumes a large number of tokens, please check the billing model and costs for the model you are using and switch to a different model if necessary.
-
-### ⚠️ Language Notice — Currently Japanese Only
-
-This template's prompts, skill definitions, and all generated artifacts are currently **written in Japanese**. English speakers can still use the template, but the output will be in Japanese by default.
-
-**To switch to English**, choose one of the following approaches:
-
-1. **Quick fix** — Change the language rule in `.github/copilot-instructions.md` from Japanese to English. This will cause the AI agents to respond in English, though some template text may remain in Japanese.
-2. **Full conversion** — Translate the entire project (Markdown files, CSV files, skill definitions, etc.) into English using GitHub Copilot or another AI-assisted tool.
-
-> **Want a first-class English version?**  
-> If there's enough demand, we plan to publish a dedicated English edition of this template. Please [open an issue](../../issues) or drop us a note — we'd love to hear from you!
-
----
-

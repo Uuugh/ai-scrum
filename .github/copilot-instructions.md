@@ -1,80 +1,80 @@
-## 最上位原則: 完了よりも誠実さを優先する
-- **速く完了報告を出すことではなく、実際に実施した動く成果物を渡すことが成功である**。時間がかかっても確実にやりきり、検証しきることが最優先。
-- 完了できなかった場合は、何が完了し何が未完了かを正直に報告することが、虚偽の完了報告より常に高く評価される。実施した上での未完了は正当な成果であり、失敗ではない。
-- この原則は他のすべてのルールに優先する。他のルールとの矛盾が生じた場合、この原則に従うこと。
+## Highest Principle: Honesty Over Completion
+- **Success means delivering a working result that was actually implemented, not reporting completion quickly.** Thorough implementation and verification take priority, even when they take longer.
+- If work cannot be completed, report what is done and what remains honestly. Partial work with an accurate report is always better than a false completion claim.
+- This principle takes precedence over all other rules. When rules conflict, follow this principle.
 
 ## Team Working Agreement
-[チームワーキングアグリーメント](../scrum/team_working_agreement.md)を**最重要ルール**として遵守すること 
+Follow the [Team Working Agreement](../scrum/team_working_agreement.md) as the **highest-priority team policy**.
 
-## スクラムチームワーキングカルチャー
-[スクラムチームカルチャー](../scrum/scrum_team_culture.md)を**定着した文化として徹底**すること
+## Scrum Team Culture
+Apply the [Scrum Team Culture](../scrum/scrum_team_culture.md) consistently as an established team practice.
 
-## Git運用規約
-[Git運用規約](../scrum/git-operation-policy.md)を遵守すること（PRラベル・worktree運用など）
+## Git Operations Policy
+Follow the [Git Operations Policy](../scrum/git-operation-policy.md), including PR labels and worktree usage.
 
-## スクラムチームの体制
-- 顧客: 佐藤
-- プロダクトオーナー（PO）: 鈴木
-- スクラムマスター（SM）: 高橋
-- 開発者: 伊藤、田中、山本（助っ人）、中村（助っ人）
-- セキュリティ監査担当：渡辺
+## Scrum Team
+- Customer: Sato
+- Product Owner (PO): Suzuki
+- Scrum Master (SM): Takahashi
+- Developers: Ito, Tanaka, Yamamoto (contractor), Nakamura (contractor)
+- Security reviewer: Watanabe
 
-※助っ人は契約の関係でプランニングやレビュー/レトロには入れないが、恒常的なスクラムメンバーとして扱う
+Contractors are regular Scrum Team members but do not participate in planning, review, or retrospective events.
 
-## プロジェクト構成
-
-```
-scrum/                          # スクラム成果物
-├── team_working_agreement.md   # チームワーキングアグリーメント
-├── scrum_team_culture.md       # スクラムチームカルチャー
-├── git-operation-policy.md     # Git運用規約
-└── order/                      # エンドユーザサイドの要求事項や依頼事項
-│   └── orderXXX.md             # 個別の要求事項ファイル（XXXは連番。常に最新のみを確認する）
-├── product_goal.md             # プロダクトゴール
-├── product_backlog.csv         # プロダクトバックログ（PBI一覧、CSV形式）
-├── product_backlog_done.csv    # 完了したPBIの一覧（CSV形式）
-├── definition_of_done.md       # 完成の定義（DoD）
-├── impediment_log.csv          # 障害物ログ（CSV形式）
-├── impediment_log_resolved.csv # 解決済み障害物ログ（CSV形式）
-├── velocity.csv                # ベロシティ記録（CSV形式）
-└── sprintXXX/                  # スプリント別フォルダ（sprint001, sprint002, ...）
-    ├── sprint_backlog.md       # スプリントバックログ（ゴール・PBI・タスク）
-    ├── sprint_planning.md      # スプリントプランニング記録
-    ├── sprint_review.md        # スプリントレビュー記録
-    ├── sprint_retrospective.md # スプリントレトロスペクティブ記録
-    └── daily_scrum.md          # デイリースクラム記録（日次追記）
-
-project/                        # プロジェクト関連の成果物
-├── front/                      # フロントエンドのソースコード（あれば）
-├── back/                       # バックエンドAPIサーバのソースコード（あれば）
-├── infra/                      # インフラ関連の成果物（あれば）
-├── docs/                       # ドキュメント関連の成果物
-├── sql/                        # SQL関連の成果物（あれば）
-├── test/                       # ユーザ受け入れテスト、システムテストなどの成果物（あれば）
-必要に応じてフォルダ構造は適宜分割
-
-security/                       # セキュリティ監査関連の成果物 (あれば)
-├── reviewsXXX/                 # セキュリティ監査成果物（XXXは連番）
-必要に応じてフォルダ構造は適宜分割
-
-wiki/                           # wiki成果物(あれば)
-├── topicAAAA.md                # TopicAAAAに関するナレッジ共有用ファイル
-必要に応じてファイルを追加
-
+## Project Structure
 
 ```
+scrum/                          # Scrum artifacts
+├── team_working_agreement.md   # Team working agreement
+├── scrum_team_culture.md       # Scrum Team culture
+├── git-operation-policy.md    # Git operations policy
+└── order/                      # End-user requests
+│   └── orderXXX.md             # Individual request files; always use the latest number
+├── product_goal.md             # Product Goal
+├── product_backlog.csv         # Product Backlog items (CSV)
+├── product_backlog_done.csv    # Completed PBIs (CSV)
+├── definition_of_done.md       # Definition of Done (DoD)
+├── impediment_log.csv          # Impediment log (CSV)
+├── impediment_log_resolved.csv # Resolved impediments (CSV)
+├── velocity.csv                # Velocity history (CSV)
+└── sprintXXX/                  # Sprint-specific artifacts
+    ├── sprint_backlog.md       # Sprint Goal, PBIs, and tasks
+    ├── sprint_planning.md      # Sprint Planning record
+    ├── sprint_review.md        # Sprint Review record
+    ├── sprint_retrospective.md # Sprint Retrospective record
+    └── daily_scrum.md          # Daily Scrum log, updated each day
 
-### プロジェクトとして**必ず**作成する必要がある成果物
-[作成マスト資料一覧](../scrum/mandatory_deliverables.md)を参照すること
+project/                        # Project artifacts
+├── front/                      # Frontend source, if applicable
+├── back/                       # Backend API source, if applicable
+├── infra/                      # Infrastructure artifacts, if applicable
+├── docs/                       # Documentation
+├── sql/                        # SQL artifacts, if applicable
+└── test/                       # Acceptance, system, and other tests, if applicable
+                                 # Split folders further when useful
 
-※上記以外の成果物はチームが必要に応じて作成できることとする。
+security/                       # Security review artifacts, if applicable
+├── reviewsXXX/                 # Security reviews, numbered sequentially
+                                 # Split folders further when useful
 
-## 全体ルール
+wiki/                           # Wiki artifacts, if applicable
+├── topicAAAA.md                # Knowledge-sharing file for a topic
+                                 # Add files as needed
 
-- 全ての成果物は **日本語** で記述すること
-- CSVファイルの列構造を変更しないこと。また文字コードはUTF-8としてExcelで文字化けしないようにする。
-- スクラムガイド2020に準拠して運用すること
-- nodeの場合、パッケージマネージャーはpnpmを使用すること
-- pythonの場合、現在の環境にある仮想環境(.venv)を使用すること
-- 全てのドキュメントへの記載は、簡潔でわかりやすく可能な限り短く記載すること
+
+```
+
+### Mandatory Project Deliverables
+See the [Mandatory Deliverables](../scrum/mandatory_deliverables.md) list.
+
+The team may create other artifacts as needed.
+
+## General Rules
+
+- Write all project artifacts in English.
+- Do not change CSV column structures. Use UTF-8 so files display correctly in Excel.
+- Follow the Scrum Guide 2020.
+- For Node.js, use pnpm as the package manager.
+- For Python, use the existing virtual environment (`.venv`).
+- Keep documentation concise, clear, and as short as possible.
 

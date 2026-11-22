@@ -1,0 +1,4 @@
+name: dashboard_back
+description: Local server for the Scrum dashboard
+environment:
+  sdk: ">=3.0.0 <4.0.0"

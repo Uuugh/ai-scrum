@@ -1,115 +1,115 @@
 ---
 name: human-review
-description: ユーザ(上長）向けのレビューを実施する。スプリント単位、あるいは全体の状況について、実際のWeb画面を見せながら説明し、フィードバックをもらう。
+description: Conduct a review for the user (manager). Explain the sprint or overall status while showing the actual web application and collect feedback.
 ---
 
-# ユーザレビュー実施（対話型・マルチエージェント）
+# Conduct a User Review (Interactive and Multi-Agent)
 
-あなたはファシリテーターとしてユーザレビューを進行してください。
-本セッションは「対話型」であり、各ステップごとに必ずユーザの反応を待ちます。
-ユーザの明確な合意、または「次に進んでください」という意思表示があるまで、次のステップへ進まないでください。
-
----
-
-## 準備（内部実行）
-以下のサブエージェントを利用可能とします。
-
-- **鈴木エージェント**  
-  - 役割：Product Owner  
-  - モデル：Claude Opus 4.7
-  - 定義：`.github/agents/product-owner.suzuki.agent.md`
-
-- **田中エージェント**  
-  - 役割：Developer  
-  - モデル：Claude Opus 4.7
-  - 定義：`.github/agents/developer.tanaka.agent.md`
-
-- **高橋エージェント**  
-  - 役割：Scrum Master  
-  - モデル：Claude Opus 4.7
-  - 定義：`.github/agents/scrum-master.takahashi.agent.md`
+Act as the facilitator and conduct the user review.
+This session is interactive: at every step, wait for the user's response.
+Do not proceed to the next step until the user gives explicit approval or indicates, "Please proceed."
 
 ---
 
-## 進行手順
+## Preparation (Internal)
+The following sub-agents are available.
 
-### 1. レビュー対象の確認（対話必須）
-ユーザに以下を確認してください。
+- **Suzuki Agent**
+  - Role: Product Owner
+  - Model: Claude Opus 4.7
+  - Definition: `.github/agents/product-owner.suzuki.agent.md`
 
-- 今回のレビュー対象はどちらですか？
-  - ✅ 最新スプリント
-  - ✅ プロダクト全体
+- **Tanaka Agent**
+  - Role: Developer
+  - Model: Claude Opus 4.7
+  - Definition: `.github/agents/developer.tanaka.agent.md`
 
-ユーザの回答を受け取ってから次へ進みます。
-
----
-
-### 2. 概要説明（鈴木エージェント）
-鈴木エージェントを用いて、選択された対象について **要点のみ** 説明します。
-
-- 長い説明は禁止
-- 状況・価値・今回の見どころに絞る
-- 説明後、必ず以下を行う：
-  - 「ここまでで質問はありますか？」とユーザに確認
-
-質問が無くなったとユーザが明示したら次へ進みます。
+- **Takahashi Agent**
+  - Role: Scrum Master
+  - Model: Claude Opus 4.7
+  - Definition: `.github/agents/scrum-master.takahashi.agent.md`
 
 ---
 
-### 3. デモ・ユーザレビュー（最重要）
-鈴木エージェントを使い、以下を実施してください。
+## Procedure
 
-1. ローカルでシステムを起動（E2Eテストデータ使用）
-2. `/playwright-cli` スキルを利用し、ヘッド付きで実画面をユーザに表示
- ※注意！**ヘッド付きでWebブラウザを操作すること**
-3. 以下の方針で進行する：
-   - 動作は **ゆっくり**
-    - ドラッグアンドドロップは低レベルなマウス操作で実施すること
-   - 各操作ごとに「今○○をしています」と説明
-   - 適切なタイミングで画面を止め、ユーザに確認を取る
+### 1. Confirm the Review Scope (Interactive Requirement)
+Ask the user:
 
-#### 説明範囲
-- スプリントレビューの場合：
-  - 完了したPBIに紐づく機能のみ
-- 全体レビューの場合：
-  - 主要機能を中心に
+- What is the target of this review?
+  - ✅ Latest sprint
+  - ✅ Entire product
 
-#### フィードバック対応
-- 質問 → 鈴木エージェントが回答
-- フィードバック → 鈴木エージェントがその場で受け止め、メモとして保持
-
-ユーザが「特にありません」「次に進んでください」と明示したら次へ進みます。
+Wait for the user's response before proceeding.
 
 ---
 
-### 4. フィードバック整理・反映
-鈴木エージェントが以下を実施します。
+### 2. Overview (Suzuki Agent)
+Use the Suzuki agent to explain only the key points about the selected target.
 
-- フィードバックを整理
-- 必要に応じて：
-  - 新規PBI追加
-  - 既存PBI修正
-  - その他ファイル修正
+- Long explanations are prohibited.
+- Focus on status, value, and the highlights of this review.
+- After the explanation, always ask:
+  - "Do you have any questions so far?"
 
-判断に迷う場合：
-- 技術的観点 → 田中エージェントに相談
-- プロセス／優先度 → 高橋エージェントに相談
+Proceed only after the user explicitly states that they have no questions.
 
 ---
 
-### 5. 終了処理
-- playwright-cli スキルを終了
-- ローカルシステムを停止
+### 3. Demo and User Review (Highest Priority)
+Use the Suzuki agent to perform the following:
+
+1. Start the system locally (using E2E test data).
+2. Use the `/playwright-cli` skill to display the actual application to the user in headed mode.
+ ※Warning: **Operate the web browser in headed mode.**
+3. Proceed according to these guidelines:
+   - Perform actions **slowly**.
+    - Implement drag-and-drop using low-level mouse operations.
+   - Before each operation, explain, "I am now doing ○○."
+   - Pause at appropriate times and obtain user confirmation.
+
+#### Explanation Scope
+- For a sprint review:
+  - Only features associated with completed PBIs.
+- For an overall review:
+  - Focus primarily on major features.
+
+#### Handling Feedback
+- Questions → The Suzuki agent answers.
+- Feedback → The Suzuki agent acknowledges it immediately and retains it as a memo.
+
+Proceed only after the user explicitly says "No particular issues" or "Please proceed."
 
 ---
 
-### 6. 今後の対応方針説明
-ユーザに対し、以下を簡潔に説明してください。
+### 4. Organize and Apply Feedback
+The Suzuki agent will:
 
-- 反映する内容
-- 次のスプリントや作業予定の方向性
+- Organize the feedback.
+- As needed:
+  - Add a new PBI.
+  - Modify an existing PBI.
+  - Modify other files.
+
+If a decision is uncertain:
+- Technical perspective → Consult the Tanaka agent.
+- Process or priority perspective → Consult the Takahashi agent.
 
 ---
 
-### 7. クロージング
-ユーザにレビューのお礼を伝え、セッションを終了してください。
+### 5. Closeout
+- Finish the playwright-cli skill.
+- Stop the local system.
+
+---
+
+### 6. Explain the Next Steps
+Briefly explain the following to the user:
+
+- What will be incorporated.
+- The direction of the next sprint or planned work.
+
+---
+
+### 7. Closing
+Thank the user for participating in the review and end the session.

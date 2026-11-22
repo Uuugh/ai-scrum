@@ -1,62 +1,62 @@
 ---
 name: scrum-security-review
 description: >
-  スクラム開発プロセスにセキュリティが適切に組み込まれているかを検証する。
-  完成の定義（DoD）、プロダクトバックログ、スプリント成果物のセキュリティ観点を確認する。
-  「スクラムのセキュリティ監査」「プロセス監査」「DoDのセキュリティ監査」「スプリントレビュー監査」等のキーワードで使用する。
+  Verify that security is appropriately integrated into the Scrum development process.
+  Review security aspects of the Definition of Done (DoD), product backlog, and sprint deliverables.
+  Trigger keywords include "Scrum security audit," "process audit," "DoD security audit," and "sprint review audit."
 ---
 
-# スクラム開発プロセス セキュリティレビュー
+# Scrum Development Process Security Review
 
-## 目的
+## Purpose
 
-スクラム開発プロセスにセキュリティが適切に組み込まれているかを検証し、「シフトレフト」（早期にセキュリティを組み込む）が実現されているかを評価する。
+Verify that security is appropriately integrated into the Scrum development process and assess whether shift-left practices—embedding security early—are in effect.
 
-## 確認対象ファイル
+## Files to Review
 
-- `scrum/definition_of_done.md` — 完成の定義
-- `scrum/product_backlog.csv` — プロダクトバックログ
-- `scrum/product_backlog_done.csv` — 完了済みプロダクトバックログ
-- `scrum/sprintXXX/sprint_backlog.md` — スプリントバックログ
-- `scrum/sprintXXX/sprint_planning.md` — スプリントプランニング記録
-- `scrum/sprintXXX/sprint_review.md` — スプリントレビュー記録
-- `scrum/sprintXXX/sprint_retrospective.md` — レトロスペクティブ記録
-- `scrum/impediment_log.csv` — 障害物ログ
-- `scrum/impediment_log_resolved.csv` — 解決済み障害物ログ
+- `scrum/definition_of_done.md` — Definition of Done
+- `scrum/product_backlog.csv` — Product backlog
+- `scrum/product_backlog_done.csv` — Completed product backlog
+- `scrum/sprintXXX/sprint_backlog.md` — Sprint backlog
+- `scrum/sprintXXX/sprint_planning.md` — Sprint planning record
+- `scrum/sprintXXX/sprint_review.md` — Sprint review record
+- `scrum/sprintXXX/sprint_retrospective.md` — Retrospective record
+- `scrum/impediment_log.csv` — Impediment log
+- `scrum/impediment_log_resolved.csv` — Resolved impediment log
 
-## 作業指示
+## Instructions
 
-1. **完成の定義（DoD）のセキュリティ項目を確認する**
-   - `scrum/definition_of_done.md` を開き、セキュリティに関する判定基準が存在するか確認する
-   - 以下の項目が含まれているか検証する：
-     - ハードコードされたシークレットが存在しないこと
-     - 依存パッケージの脆弱性スキャンが実施されていること
-     - 入力検証・出力エンコーディングが実装されていること
-     - 認証・認可のテストが完了していること
-   - 不足している場合は、追加すべき項目を具体的にリストアップして報告する
+1. **Review Security Items in the Definition of Done (DoD)**
+   - Open `scrum/definition_of_done.md` and verify that security criteria exist.
+   - Verify that it includes:
+     - No hard-coded secrets.
+     - Dependency vulnerability scanning.
+     - Input validation and output encoding.
+     - Completion of authentication and authorization tests.
+   - If anything is missing, list specific items that should be added and report them.
 
-2. **プロダクトバックログのセキュリティ要件を確認する**
-   - `scrum/product_backlog.csv` を開き、セキュリティ関連のPBIが存在するか確認する
-   - 各PBIの `acceptance_criteria` 列にセキュリティ観点の受入基準が含まれているか確認する
-   - セキュリティPBIの `priority` が適切な優先度に設定されているか評価する
-   - 不足しているセキュリティPBIがあれば、追加を提案する
-   - 完了済みのプロダクトバックログ（`scrum/product_backlog_done.csv`）も同様に確認する
+2. **Review Security Requirements in the Product Backlog**
+   - Open `scrum/product_backlog.csv` and verify whether security-related PBIs exist.
+   - Check whether each PBI's `acceptance_criteria` column contains security-focused acceptance criteria.
+   - Assess whether security PBI `priority` values are appropriate.
+   - If required security PBIs are missing, propose additions.
+   - Perform the same review for `scrum/product_backlog_done.csv`.
 
-3. **スプリント成果物のセキュリティ観点を検証する**
-   - 最新のスプリントフォルダ（`scrum/sprintXXX/`）を確認する
-   - `sprint_planning.md` にセキュリティタスクが含まれているか確認する
-   - `sprint_review.md` にセキュリティ検査の結果が記録されているか確認する
-   - `sprint_retrospective.md` でセキュリティプロセスの改善が議論されているか確認する
+3. **Verify Security in Sprint Deliverables**
+   - Review the latest sprint folder (`scrum/sprintXXX/`).
+   - Check whether `sprint_planning.md` includes security tasks.
+   - Check whether `sprint_review.md` records security inspection results.
+   - Check whether `sprint_retrospective.md` discusses security-process improvements.
 
-4. **障害物ログのセキュリティ関連項目を確認する**
-   - `scrum/impediment_log.csv` を開き、セキュリティに起因する障害が記録されているか確認する
-   - `scrum/impediment_log_resolved.csv` を開き、解決済みのセキュリティ関連障害が記録されているか確認する
-   - 未解決のセキュリティ関連障害があれば、その影響度を評価する
+4. **Review Security Items in the Impediment Logs**
+   - Open `scrum/impediment_log.csv` and check for impediments caused by security issues.
+   - Open `scrum/impediment_log_resolved.csv` and check for resolved security-related impediments.
+   - If unresolved security impediments exist, assess their impact.
 
-5. **スクラムイベントへのセキュリティ統合を評価する**
-   - 以下の観点でプロセスの成熟度を5段階で評価する：
-     - バックログリファインメントでのセキュリティリスク分析の実施
-     - スプリントプランニングでのセキュリティタスクの計画
-     - デイリースクラムでのセキュリティブロッカーの共有
-     - スプリントレビューでのセキュリティ検査結果の報告
-     - レトロスペクティブでのセキュリティプロセス改善の議論
+5. **Assess Security Integration Across Scrum Events**
+   - Use a five-level maturity scale for:
+     - Security risk analysis during backlog refinement.
+     - Planning of security tasks during sprint planning.
+     - Sharing security blockers during daily Scrum.
+     - Reporting security inspection results during sprint review.
+     - Discussing security process improvements during the retrospective.

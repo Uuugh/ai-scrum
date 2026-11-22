@@ -36,7 +36,7 @@
 #   - actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
 #   - github/gh-aw-actions/setup@cde65c546c2b0f6d3f3a9492a04e6687887c4fe8 # v0.67.0
 
-name: "デイリー5日目"
+name: "Day 5 Daily Scrum"
 "on":
   workflow_call:
     outputs:
@@ -59,7 +59,7 @@ permissions: {}
 concurrency:
   group: "gh-aw-${{ github.workflow }}"
 
-run-name: "デイリー5日目"
+run-name: "Day 5 Daily Scrum"
 
 jobs:
   activation:
@@ -110,7 +110,7 @@ jobs:
           GH_AW_INFO_VERSION: "latest"
           GH_AW_INFO_AGENT_VERSION: "latest"
           GH_AW_INFO_CLI_VERSION: "v0.67.0"
-          GH_AW_INFO_WORKFLOW_NAME: "デイリー5日目"
+          GH_AW_INFO_WORKFLOW_NAME: "Day 5 Daily Scrum"
           GH_AW_INFO_EXPERIMENTAL: "false"
           GH_AW_INFO_SUPPORTS_TOOLS_ALLOWLIST: "true"
           GH_AW_INFO_STAGED: "false"
@@ -856,7 +856,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_NOOP_MAX: "1"
-          GH_AW_WORKFLOW_NAME: "デイリー5日目"
+          GH_AW_WORKFLOW_NAME: "Day 5 Daily Scrum"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_NOOP_REPORT_AS_ISSUE: "true"
@@ -873,7 +873,7 @@ jobs:
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
           GH_AW_MISSING_TOOL_CREATE_ISSUE: "true"
-          GH_AW_WORKFLOW_NAME: "デイリー5日目"
+          GH_AW_WORKFLOW_NAME: "Day 5 Daily Scrum"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |
@@ -887,7 +887,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ steps.setup-agent-output-env.outputs.GH_AW_AGENT_OUTPUT }}
-          GH_AW_WORKFLOW_NAME: "デイリー5日目"
+          GH_AW_WORKFLOW_NAME: "Day 5 Daily Scrum"
           GH_AW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           GH_AW_AGENT_CONCLUSION: ${{ needs.agent.result }}
           GH_AW_WORKFLOW_ID: "run-day5"
@@ -989,7 +989,7 @@ jobs:
         if: always() && steps.detection_guard.outputs.run_detection == 'true'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
-          WORKFLOW_NAME: "デイリー5日目"
+          WORKFLOW_NAME: "Day 5 Daily Scrum"
           WORKFLOW_DESCRIPTION: "No description provided"
           HAS_PATCH: ${{ needs.agent.outputs.has_patch }}
         with:
@@ -1103,7 +1103,7 @@ jobs:
       GH_AW_ENGINE_ID: "copilot"
       GH_AW_ENGINE_MODEL: "claude-opus-4.6"
       GH_AW_WORKFLOW_ID: "run-day5"
-      GH_AW_WORKFLOW_NAME: "デイリー5日目"
+      GH_AW_WORKFLOW_NAME: "Day 5 Daily Scrum"
     outputs:
       code_push_failure_count: ${{ steps.process_safe_outputs.outputs.code_push_failure_count }}
       code_push_failure_errors: ${{ steps.process_safe_outputs.outputs.code_push_failure_errors }}

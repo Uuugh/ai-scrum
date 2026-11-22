@@ -1,36 +1,36 @@
 ---
 name: execute-sprint
-description: スクラム開発における1スプリントを全体実行するオーケストレーター。ユーザ要件整理、バックログリファインメント、スプリントプランニング、5日間のデイリースクラム＆開発、スプリントレビュー、スプリントレトロスペクティブを順番に実施する。
+description: Orchestrator for executing one complete Scrum sprint. Performs user requirement analysis, backlog refinement, sprint planning, five days of daily Scrum and development, the sprint review, and the sprint retrospective in sequence.
 ---
 
-# スプリント全体実行
+# Execute the Full Sprint
 
-以下のステップで順に作業を実行します。（並列には実行しないでください）
+Execute the following steps in order. (Do not execute them in parallel.)
 
-## Step 1: ユーザ要件を整理する
-サブエージェントをOpus4.7で起動して、`order-create` スキルの手順を実行します。
+## Step 1: Organize the User Requirements
+Start a sub-agent with Opus 4.7 and execute the `order-create` skill procedure.
 
-## Step 2: バックログリファインメントを実施する
-サブエージェントをOpus4.7で起動して、`backlog-refinement` スキルの手順を実行します。
+## Step 2: Perform Backlog Refinement
+Start a sub-agent with Opus 4.7 and execute the `backlog-refinement` skill procedure.
 
-## Step 3: スプリントプランニングを実施する
-サブエージェントをOpus4.7で起動して、`sprint-planning` スキルの手順を実行します。
+## Step 3: Perform Sprint Planning
+Start a sub-agent with Opus 4.7 and execute the `sprint-planning` skill procedure.
 
-## Step 4: デイリースクラム＆開発を実施する（5日間）
+## Step 4: Perform the Daily Scrum and Development (5 Days)
 
-- **DAY1**: デイリースクラムならびに開発を実行します。
- (サブエージェントをOpus4.7で起動して、`one-day-in-scrum` スキルの手順を実行します。)
-- **DAY2**: デイリースクラムならびに開発を実行します。
- (サブエージェントをOpus4.7で起動して、`one-day-in-scrum` スキルの手順を実行します。)
-- **DAY3**: デイリースクラムならびに開発を実行します。
- (サブエージェントをOpus4.7で起動して、`one-day-in-scrum` スキルの手順を実行します。)
-- **DAY4**: デイリースクラムならびに開発を実行します。
- (サブエージェントをOpus4.7で起動して、`one-day-in-scrum` スキルの手順を実行します。)
-- **DAY5**: デイリースクラムならびに開発を実行します。
- (サブエージェントをOpus4.7で起動して、`one-day-in-scrum` スキルの手順を実行します。)
+- **DAY1**: Perform the daily Scrum and development.
+ (Start a sub-agent with Opus 4.7 and execute the `one-day-in-scrum` skill procedure.)
+- **DAY2**: Perform the daily Scrum and development.
+ (Start a sub-agent with Opus 4.7 and execute the `one-day-in-scrum` skill procedure.)
+- **DAY3**: Perform the daily Scrum and development.
+ (Start a sub-agent with Opus 4.7 and execute the `one-day-in-scrum` skill procedure.)
+- **DAY4**: Perform the daily Scrum and development.
+ (Start a sub-agent with Opus 4.7 and execute the `one-day-in-scrum` skill procedure.)
+- **DAY5**: Perform the daily Scrum and development.
+ (Start a sub-agent with Opus 4.7 and execute the `one-day-in-scrum` skill procedure.)
 
-## Step 5: スプリントレビューを実施する
-サブエージェントをOpus4.7で起動して、`sprint-review` スキルの手順を実行します。
+## Step 5: Perform the Sprint Review
+Start a sub-agent with Opus 4.7 and execute the `sprint-review` skill procedure.
 
-## Step 6: スプリントレトロスペクティブを実施する
-サブエージェントをOpus4.7で起動して、`sprint-retrospective` スキルの手順を実行します。
+## Step 6: Perform the Sprint Retrospective
+Start a sub-agent with Opus 4.7 and execute the `sprint-retrospective` skill procedure.

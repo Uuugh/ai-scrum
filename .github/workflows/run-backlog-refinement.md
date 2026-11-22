@@ -1,5 +1,5 @@
 ---
-name: バックログリファインメント
+name: Backlog Refinement
 
 on:
   workflow_dispatch:
@@ -29,6 +29,6 @@ safe-outputs:
 
 ---
 
-`.github/skills/backlog-refinement/SKILL.md` の指示に従い、バックログリファインメントを実施してください。
+Follow the instructions in `.github/skills/backlog-refinement/SKILL.md` to perform Backlog Refinement.
 
-完了後、全ての変更ファイルをコミットし、`create_pull_request` ツールを呼び出してPRを作成してください。
+After completion, commit all changed files and invoke the `create_pull_request` tool to create a pull request.

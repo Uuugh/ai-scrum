@@ -1,5 +1,5 @@
 ---
-name: デイリー4日目
+name: Day 4 Daily Scrum
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ safe-outputs:
 
 ---
 
-`.github/skills/one-day-in-scrum/SKILL.md` の指示に従い、デイリースクラムとインクリメント作成を実施してください。
-- 対応日: Day4
+Follow the instructions in `.github/skills/one-day-in-scrum/SKILL.md` to run the daily scrum and create the increment.
+- Corresponding day: Day4
 
-完了後、全ての変更ファイルをコミットし、`create_pull_request` ツールを呼び出してPRを作成してください。
+After completion, commit all changed files and invoke the `create_pull_request` tool to create a pull request.

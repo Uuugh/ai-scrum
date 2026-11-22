@@ -1,42 +1,41 @@
-# スプリントプランニング記録 - Sprint 001
+# Sprint Planning Record - Sprint 001
 
-## 基本情報
-| 項目 | 内容 |
-|------|------|
-| 日時 | YYYY-MM-DD HH:MM - HH:MM |
-| 参加者 | PO: / SM: / Dev: |
-| タイムボックス | 最大8時間（1ヶ月スプリントの場合） |
+## Basic Information
+| Item | Value |
+|---|---|
+| Date and time | YYYY-MM-DD HH:MM - HH:MM |
+| Participants | PO: / SM: / Developers: |
+| Timebox | Up to 8 hours for a one-month Sprint |
 
-## トピック1: なぜこのスプリントは価値があるのか？（Why）
-> プロダクトオーナーが、現在のスプリントでプロダクトの価値と有用性をどのように高められるかを提案する。
-> — スクラムガイド 2020
+## Topic 1: Why Is This Sprint Valuable?
+> The Product Owner proposes how the product's value and usefulness could increase during this Sprint.
+> — Scrum Guide 2020
 
-### プロダクトオーナーの提案
-（プロダクトオーナーによる価値提案を記載）
+### Product Owner Proposal
+(Record the Product Owner's value proposal.)
 
-### 合意されたスプリントゴール
-（チーム全体で合意したスプリントゴールを記載）
+### Agreed Sprint Goal
+(Record the Sprint Goal agreed by the team.)
 
-## トピック2: このスプリントで何ができるか？（What）
-> プロダクトオーナーとの議論を通じて、開発者は現在のスプリントに含めるプロダクトバックログアイテムを選択する。
-> — スクラムガイド 2020
+## Topic 2: What Can Be Done This Sprint?
+> Through discussion with the Product Owner, the Developers select Product Backlog items for the Sprint.
+> — Scrum Guide 2020
 
-### 選択したPBI
-| PBI ID | タイトル | 見積もり | 選択理由 |
-|--------|----------|----------|----------|
-| PBI-XXX | （タイトル） | （ポイント） | （理由） |
+### Selected PBIs
+| PBI ID | Title | Estimate | Selection reason |
+|---|---|---:|---|
+| PBI-XXX | (Title) | (Points) | (Reason) |
 
-### キャパシティ確認
-- チームキャパシティ: （ポイント）
-- 選択合計: （ポイント）
+### Capacity Check
+- Team capacity: (Points)
+- Selected total: (Points)
 
-## トピック3: 選択した作業をどのように完了させるか？（How）
-> 選択したプロダクトバックログアイテムごとに、開発者は完成の定義を満たすインクリメントを作成するために
-> 必要な作業を計画する。
-> — スクラムガイド 2020
+## Topic 3: How Will the Selected Work Get Done?
+> For each selected Product Backlog item, the Developers plan the work needed to create an Increment that meets the Definition of Done.
+> — Scrum Guide 2020
 
-### タスク分解
-（sprint_backlog.md に記載）
+### Task Breakdown
+(Record tasks in `sprint_backlog.md`.)
 
-## 決定事項・懸念事項
-- （決定事項や懸念事項を記載）
+## Decisions and Concerns
+- (Record decisions or concerns.)

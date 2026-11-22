@@ -1,36 +1,35 @@
-# スプリントレビュー記録 - Sprint 001
+# Sprint Review Record - Sprint 001
 
-## 基本情報
-| 項目 | 内容 |
-|------|------|
-| 日時 | YYYY-MM-DD HH:MM - HH:MM |
-| 参加者 | PO: / SM: / Dev: / ステークホルダー: |
-| タイムボックス | 最大4時間（1ヶ月スプリントの場合） |
+## Basic Information
+| Item | Value |
+|---|---|
+| Date and time | YYYY-MM-DD HH:MM - HH:MM |
+| Participants | PO: / SM: / Developers: / Stakeholders: |
+| Timebox | Up to 4 hours for a one-month Sprint |
 
-> スプリントレビューの目的は、スプリントの成果を検査し、今後の適応を決定することである。
-> スクラムチームは主要なステークホルダーに作業の結果を提示し、プロダクトゴールに対する進捗を議論する。
-> — スクラムガイド 2020
+> The purpose of the Sprint Review is to inspect the outcome of the Sprint and determine future adaptations. The Scrum Team presents results to key stakeholders and discusses progress toward the Product Goal.
+> — Scrum Guide 2020
 
-## スプリントゴールの達成状況
-| スプリントゴール | 達成状況 |
-|------------------|----------|
-| （スプリントゴール） | 達成 / 未達成 / 部分達成 |
+## Sprint Goal Outcome
+| Sprint Goal | Outcome |
+|---|---|
+| (Sprint Goal) | Achieved / Not Achieved / Partially Achieved |
 
-## 完了したPBI
-| PBI ID | タイトル | デモ結果 | ステークホルダーフィードバック |
-|--------|----------|----------|-------------------------------|
-| PBI-XXX | （タイトル） | 受入 / 差戻 | （フィードバック内容） |
+## Completed PBIs
+| PBI ID | Title | Demo result | Stakeholder feedback |
+|---|---|---|---|
+| PBI-XXX | (Title) | Accepted / Rejected | (Feedback) |
 
-## 未完了のPBI
-| PBI ID | タイトル | 理由 | 対応方針 |
-|--------|----------|------|----------|
-| PBI-XXX | （タイトル） | （理由） | （対応方針） |
+## Incomplete PBIs
+| PBI ID | Title | Reason | Follow-up |
+|---|---|---|---|
+| PBI-XXX | (Title) | (Reason) | (Follow-up) |
 
-## 環境変化の共有
-（ビジネス環境や技術環境の変化があれば記載）
+## Changes in the Environment
+(Record relevant business or technical changes.)
 
-## プロダクトバックログの調整
-（レビュー結果に基づくプロダクトバックログの変更点を記載）
+## Product Backlog Adjustments
+(Record changes based on the review.)
 
-## 次のスプリントに向けた議論
-- （次に取り組むべき事項や方針を記載）
+## Discussion for the Next Sprint
+- (Record next priorities or decisions.)

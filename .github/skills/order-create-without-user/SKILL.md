@@ -1,18 +1,18 @@
 ---
 name: order-create-without-user
-description: 上長(ユーザ)不在時に、依頼事項のメモ(scrum/order/orderXXX.md)を作成・更新する。ユーザからの要求事項や依頼事項の整理、スクラムチームへの作業依頼準備に使用する。
+description: Create or update the request memo (scrum/order/orderXXX.md) when the manager (user) is unavailable. Use it to organize user requirements and requests and prepare work assignments for the Scrum team.
 ---
 
-# 依頼事項メモの作成・更新
+# Creating or Updating the Request Memo
 
-## 準備
-- サブエージェントとして、佐藤エージェント(`.github/agents/customer.sato.agent.md`)をモデル"Claude Opus 4.7"で実行します。
+## Preparation
+- Run the Sato agent (`.github/agents/customer.sato.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
 
-## 手順
-1. 佐藤エージェントで、`scrum/order/orderXXX.md` を読み、内容を理解する（XXXは最新の番号のみを確認します。）
-2. スクラムチームに作業を依頼するにあたって、不明点やクリアにすべき点を自身で考えます。上長だったらこうするだろうをベースに整理します。
-3. `scrum/order/orderXXX.md` を更新し、スクラムチームとの対話に備えます。
+## Procedure
+1. Using the Sato agent, read `scrum/order/orderXXX.md` and understand its content (check only the latest XXX number).
+2. Before requesting work from the Scrum team, personally identify unclear or unresolved points. Organize them based on what the manager would likely decide.
+3. Update `scrum/order/orderXXX.md` in preparation for discussion with the Scrum team.
 
-## ファイル更新のポイント
-- 依頼事項の内容を明確に記載してください。
-- もともとのフォーマットにとらわれず、必要に応じて内容を整理し、わかりやすくしてください。
+## File Update Guidelines
+- Clearly document the requested work.
+- Do not feel bound by the existing format; organize the content as needed and keep it easy to understand.

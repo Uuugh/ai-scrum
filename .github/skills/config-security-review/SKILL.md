@@ -1,69 +1,67 @@
 ---
 name: config-security-review
 description: >
-  アプリケーションの設定ファイルやデプロイメント構成にセキュリティ上の問題がないかを検証する。
-  Docker、CI/CDパイプライン、IaC（Terraform/Bicep）、環境設定ファイルのセキュリティを確認する。
-  「設定ファイルのセキュリティ監査」「Dockerのセキュリティ監査」「CI/CDセキュリティ監査」「IaCスキャン監査」等のキーワードで使用する。
+  Verify that application configuration files and deployment configurations have no security issues.
+  Review Docker, CI/CD pipelines, IaC (Terraform/Bicep), and environment configuration security.
+  Trigger keywords include "configuration security audit," "Docker security audit," "CI/CD security audit," and "IaC security audit."
 ---
 
-# 設定ファイル・構成管理 セキュリティレビュー
+# Configuration and Deployment Security Review
 
-## 目的
+## Purpose
+Verify that application configuration files and deployment configurations have no security issues.
 
-アプリケーションの設定ファイルやデプロイメント構成にセキュリティ上の問題がないかを検証する。
+## Review Targets
+- Docker files (`Dockerfile`, `docker-compose.yml`)
+- CI/CD configuration (`.github/workflows/*.yml`)
+- IaC files (`*.tf`, `*.bicep`, `*.arm.json`)
+- Environment configuration (`.env.example`, `appsettings.json`)
 
-## 確認対象
+## Instructions
 
-- Docker関連ファイル（`Dockerfile`、`docker-compose.yml`）
-- CI/CD設定ファイル（`.github/workflows/*.yml`）
-- IaCファイル（`*.tf`、`*.bicep`、`*.arm.json`）
-- 環境設定ファイル（`.env.example`、`appsettings.json`）
-
-## 作業指示
-
-1. **Dockerファイルのセキュリティを検証する**
-   - `Dockerfile` が存在する場合、以下を確認する：
-     - ベースイメージが公式かつ最小構成のものか（alpine推奨）
-     - rootユーザではなく非特権ユーザで実行されているか
-     - 不要なパッケージやツールが含まれていないか
-     - マルチステージビルドが活用されているか
-   - コンテナイメージの脆弱性スキャンを実行する：
+1. **Verify Docker file security**
+   - When a `Dockerfile` exists, confirm:
+     - The base image is official and minimal (Alpine is recommended).
+     - The container runs as a non-root, non-privileged user.
+     - No unnecessary packages or tools are included.
+     - Multi-stage builds are used.
+   - Run container image vulnerability scans:
      ```bash
-     # Trivy によるファイルシステムスキャン
+     # Filesystem scan with Trivy
      trivy fs . --severity CRITICAL,HIGH --format json --output trivy-fs-report.json
 
-     # コンテナイメージスキャン（イメージが存在する場合）
+     # Container image scan (if the image exists)
      trivy image <image-name> --severity CRITICAL,HIGH
      ```
 
-2. **CI/CDパイプラインのセキュリティを検証する**
-   - `.github/workflows/` 配下のワークフローファイルを確認する
-   - 以下を検証する：
-     - シークレットがGitHub Secretsで管理されているか（ハードコードされていないか）
-     - サードパーティのGitHub Actionsが信頼できるソース（公式またはverified creator）からのものか
-     - Actionsのバージョンがコミットハッシュまたは特定タグで固定されているか
-     - SAST/SCA/シークレットスキャンがパイプラインに統合されているか
-     - ブランチ保護ルールが設定されているか
-     - コードレビューの必須化が設定されているか
+2. **Verify CI/CD pipeline security**
+   - Inspect workflow files under `.github/workflows/`.
+   - Verify:
+     - Secrets are managed by GitHub Secrets and are not hard-coded.
+     - Third-party GitHub Actions come from trusted sources (official or verified creators).
+     - Action versions are pinned to commit hashes or specific tags.
+     - SAST, SCA, and secret scanning are integrated into the pipeline.
+     - Branch protection rules are configured.
+     - Code review is required.
 
-3. **IaCファイルのセキュリティスキャンを実行する**
-   - Terraform/Bicepファイルが存在する場合、以下を実行する：
+3. **Scan IaC files**
+   - For Terraform/Bicep files, run:
      ```bash
-     # Trivy による IaC スキャン（tfsecの後継）
+     # IaC scan with Trivy (successor to tfsec)
      trivy config . --severity CRITICAL,HIGH --format json --output trivy-iac-report.json
 
-     # Checkov による IaC スキャン
+     # IaC scan with Checkov
      checkov -d . --output json > checkov-report.json
      ```
-   - IaCコードに以下のベストプラクティスが適用されているか確認する：
-     - リソースへのパブリックアクセスが最小化されているか
-     - 暗号化がデフォルトで有効化されているか
-     - ネットワークアクセスが必要最小限に制限されているか
-     - タグ付けやリソース命名規則が統一されているか
+   - Verify these IaC best practices:
+     - Public access to resources is minimized.
+     - Encryption is enabled by default.
+     - Network access is restricted to the minimum necessary.
+     - Tagging and resource naming conventions are consistent.
 
-4. **環境設定ファイルのセキュリティを検証する**
-   - `.env.example` が存在する場合、実際の値やシークレットが含まれていないか確認する
-   - `appsettings.json` 等の設定ファイルで以下を確認する：
-     - 本番環境のデバッグモードが無効化されているか
-     - 接続文字列にシークレットが直接記載されていないか
-     - ログレベルが本番環境に適切な設定か（DEBUGは不可）
+4. **Verify environment configuration security**
+   - If `.env.example` exists, ensure it contains no actual values or secrets.
+   - Inspect configuration files such as `appsettings.json`:
+     - Debug mode is disabled in production.
+     - Secrets are not directly embedded in connection strings.
+     - Log levels are appropriate for production (DEBUG is prohibited).

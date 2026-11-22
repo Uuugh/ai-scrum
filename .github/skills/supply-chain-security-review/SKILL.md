@@ -1,21 +1,20 @@
 ---
 name: supply-chain-security-review
 description: >
-  プロジェクトが依存するサードパーティコンポーネント（ライブラリ、フレームワーク、ツール）のセキュリティを検証する。
-  依存パッケージの脆弱性スキャン、バージョン管理、自動更新、ライセンスコンプライアンス、SBOMの生成を確認する。
-  「サプライチェーン監査」「依存パッケージ監査」「SBOM監査」「ライセンス確認監査」「Dependabot監査」等のキーワードで使用する。
+  Verify the security of third-party components (libraries, frameworks, and tools) on which the project depends.
+  Check dependency vulnerability scans, version control, automated updates, license compliance, and SBOM generation.
+  Trigger keywords include "supply chain audit," "dependency audit," "SBOM audit," "license compliance audit," and "Dependabot audit."
 ---
 
-# サプライチェーン セキュリティレビュー
+# Supply Chain Security Review
 
-## 目的
+## Purpose
+Verify the security of third-party components (libraries, frameworks, and tools) on which the project depends.
 
-プロジェクトが依存するサードパーティコンポーネント（ライブラリ、フレームワーク、ツール）のセキュリティを検証する。
+## Instructions
 
-## 作業指示
-
-1. **依存パッケージの脆弱性を網羅的にスキャンする**
-   - 技術スタックに応じて以下を実行する：
+1. **Perform a comprehensive dependency vulnerability scan**
+   - Run the applicable commands for the technology stack:
      ```bash
      # Node.js
      pnpm audit
@@ -30,30 +29,30 @@ description: >
      dotnet list package --vulnerable
      dotnet list package --vulnerable --include-transitive
 
-     # 汎用（Trivy）
+     # Generic (Trivy)
      trivy fs . --scanners vuln --format json --output trivy-vuln.json
      ```
 
-2. **依存パッケージのバージョン管理状態を確認する**
-   - ロックファイルが存在し、リポジトリにコミットされているか確認する：
-     - `pnpm-lock.yaml`（Node.js）
-     - `requirements.txt` のバージョンピン留め（Python）
-     - `*.csproj` のバージョン指定（.NET）
-   - バージョン範囲指定（`^`、`~`、`>=`）が過度に緩くないか確認する
+2. **Check dependency version management**
+   - Verify that lock files exist and are committed to the repository:
+     - `pnpm-lock.yaml` (Node.js)
+     - Pinned versions in `requirements.txt` (Python)
+     - Version specifications in `*.csproj` (.NET)
+   - Check whether version ranges (`^`, `~`, `>=`) are overly broad.
 
-3. **依存パッケージの自動更新設定を確認する**
-   - Dependabot設定ファイル（`.github/dependabot.yml`）が存在するか確認する
-   - または Renovate 等の自動更新ツールが導入されているか確認する
-   - セキュリティアップデートの自動マージポリシーが設定されているか確認する
+3. **Check automated dependency update settings**
+   - Verify that `.github/dependabot.yml` exists.
+   - Otherwise, verify whether an automated update tool such as Renovate is installed.
+   - Check whether an auto-merging policy is configured for security updates.
 
-4. **ライセンスコンプライアンスを確認する**
-   - 依存パッケージのライセンスを一覧化し、プロジェクトのライセンスとの互換性を確認する
-   - GPL等のコピーレフトライセンスが混在していないか検証する
+4. **Verify license compliance**
+   - Inventory dependency licenses and verify compatibility with the project license.
+   - Check for mixed copyleft licenses such as GPL.
 
-5. **SBOM（Software Bill of Materials）の生成を検討する**
-   - SBOMが生成・管理されているか確認する
-   - 未生成の場合は、以下のツールでの生成を提案する：
+5. **Consider generating a Software Bill of Materials (SBOM)**
+   - Verify whether an SBOM is generated and managed.
+   - If none exists, propose generating it with:
      ```bash
-     # Trivy による SBOM 生成
+     # Generate an SBOM with Trivy
      trivy fs . --format cyclonedx --output sbom.json
      ```

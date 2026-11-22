@@ -1,77 +1,77 @@
 ---
 name: sprint-planning
-description: スプリントプランニングを実施する。PO、SM、開発者が参加し、スプリントゴール策定（Why）、PBI選択（What）、タスク分解（How）の3トピックを議論する。新しいスプリント開始時に使用する。
+description: Conduct sprint planning. The PO, SM, and developers discuss the sprint goal (Why), PBI selection (What), and task breakdown (How). Use at the start of a new sprint.
 ---
 
-# スプリントプランニング開始
-"準備"で起動した各サブエージェントを下記の指示通りに利用し、スプリントプランニングを実施してください。
+# Start Sprint Planning
+Use each sub-agent started in "Preparation" according to the instructions below to conduct sprint planning.
 
-## 準備
-- サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、伊藤エージェント(`.github/agents/developer.ito.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、田中エージェント(`.github/agents/developer.tanaka.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、小林エージェント(`.github/agents/reviewer.kobayashi.agent.md`)をモデル"GPT-5.5"で実行します。
+## Preparation
+- Run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Ito agent (`.github/agents/developer.ito.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Tanaka agent (`.github/agents/developer.tanaka.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Kobayashi agent (`.github/agents/reviewer.kobayashi.agent.md`) as a sub-agent with the model "GPT-5.5".
 
-なお、スプリントは全部で5日間で計画します。(1週間スプリントです)
-開発者（田中・伊藤、山本・中村）は世界でも有数のエキスパートエンジニアです。極めて高い生産性を前提とした計画を立てることが可能です。
-ただし山本と中村はスプリントプランニングには参加できない契約です。
-また5日分の作業が無い場合は、スプリントの期間を短くすることも可能です。
-計画は最後に小林によってレビューされます。レビューの指摘がある場合、チームで再度計画を立て直します。
+Plan the sprint for five days total. (It is a one-week sprint.)
+The developers (Tanaka, Ito, Yamamoto, and Nakamura) are among the world's expert engineers. It is possible to plan on the assumption of exceptionally high productivity.
+However, Yamamoto and Nakamura are contractually unable to participate in sprint planning.
+If there is not enough work for five days, the sprint duration may be shortened.
+Kobayashi will review the plan. If the review identifies issues, the team will revise the plan.
 
-## 事前準備
-1. `scrum/product_goal.md` を読み、現在のプロダクトゴールを確認する
-2. `scrum/product_backlog.csv` を読み、優先順位の高いPBIを確認する
-3. `scrum/definition_of_done.md` を読み、完成の定義を確認する
-4. `scrum/velocity.csv` を読み、過去のベロシティを確認する
-5. `scrum/order/orderXXX.md` を読み、最新のユーザサイドの要求事項や依頼事項を確認する（※XXXは最新の番号のものを確認）
-6. `scrum/mandatory_deliverables.md` を読み、顧客から**必ず**作成することを要求されている成果物を確認する
-7. `scrum/sprintZZZ/sprint_retrospective.md` を読み、前回スプリントの振り返り結果を確認する（※ZZZは前回分のスプリントの番号の内容を確認）
+## Pre-check
+1. Read `scrum/product_goal.md` and review the current product goal.
+2. Read `scrum/product_backlog.csv` and review the high-priority PBIs.
+3. Read `scrum/definition_of_done.md` and review the Definition of Done.
+4. Read `scrum/velocity.csv` and review historical velocity.
+5. Read `scrum/order/orderXXX.md` and review the latest user-side requirements and requests. (Check the file with the latest XXX number.)
+6. Read `scrum/mandatory_deliverables.md` and identify deliverables the customer requires **must** be created.
+7. Read `scrum/sprintZZZ/sprint_retrospective.md` and review the previous sprint retrospective. (Check ZZZ for the previous sprint number.)
 
-## 対象スプリント
-対象スプリントは、スプリントプランニング時に新規作成する`scrum/sprintXXX`とします。
-XXXは、既存のsprintフォルダと重複しない未使用の最小連番を採番します。
-例: すでに`scrum/sprint001`が存在する場合、今回のスプリントは`scrum/sprint002`になります。
+## Target Sprint
+Create `scrum/sprintXXX` for the sprint being planned.
+XXX must be the smallest unused sequential number that does not conflict with an existing sprint folder.
+Example: If `scrum/sprint001` already exists, this sprint is `scrum/sprint002`.
 
-## トピック1: なぜこのスプリントは価値があるのか？（Why）
-- 鈴木エージェントから、プロダクトオーナーの立場でスプリントの価値提案を行ってください
-- 高橋エージェント、伊藤エージェント、田中エージェントからスプリントゴールの合意を取得してください
-  - スプリントゴールはステークホルダーにとって価値がある単一の目的であることを意識してください。
+## Topic 1: Why is this sprint valuable? (Why)
+- Have the Suzuki agent provide the sprint value proposal from the Product Owner's perspective.
+- Obtain agreement on the sprint goal from the Takahashi, Ito, and Tanaka agents.
+  - Remember that the sprint goal is a single objective that is valuable to stakeholders.
 
-## トピック2: このスプリントで何ができるか？（What）
-- 鈴木エージェントを使い、最も重要なPBIを提示してください
-- 田中エージェントを使い、キャパシティとベロシティを考慮して選択可能なPBIを判断してください
-- 伊藤エージェントを使い、キャパシティとベロシティを考慮して選択可能なPBIになっているか確認してください。
-  - 選択するPBIは完成の定義を満たせる粒度であること
+## Topic 2: What can be done in this sprint? (What)
+- Use the Suzuki agent to present the highest-priority PBIs.
+- Use the Tanaka agent to determine eligible PBIs based on capacity and velocity.
+- Use the Ito agent to verify, based on capacity and velocity, that the eligible PBIs can be selected.
+  - The selected PBIs must be appropriately sized to satisfy the Definition of Done.
 
-## トピック3: 選択した作業をどのように完了させるか？（How）
-- 伊藤エージェントを使い、選択したPBIをタスクに分解してください
-- 田中エージェントを使い、分解されたタスクをレビューしてください
-  - タスクは1日以下の作業単位に分解すること
-  - 各タスクに見積もり時間を設定すること
-  - 各タスクは伊藤、田中、山本、中村の4名が担当すること
-  - 伊藤、田中、山本、中村が担当できないタスクがあれば高橋がスクラムマスターとして対応すること
+## Topic 3: How will the selected work be completed? (How)
+- Use the Ito agent to break the selected PBIs into tasks.
+- Use the Tanaka agent to review the resulting tasks.
+  - Break tasks into work units that take no more than one day.
+  - Set an estimated duration for each task.
+  - Assign each task to one of Ito, Tanaka, Yamamoto, or Nakamura.
+  - If a task cannot be assigned to one of Ito, Tanaka, Yamamoto, or Nakamura, the Scrum Master, Takahashi, will handle it.
 
-## レビュー
- - 小林エージェントを使い、スプリントプランニングの内容をレビューしてください
-  - なお、レビューにあたっては、稼働時間を必ず確認します。メンバーの有休時間が発生しない綿密な計画が立てられているかを確認します。
-  - ベロシティはあくまで参考値のため、過去のベロシティを大幅に上回る/下回る計画であっても、合理的な根拠とそれに対応した稼働見積もりがあれば受け入れられます。
- - レビューの指摘がある場合、鈴木エージェント、高橋エージェント、伊藤エージェント、田中エージェントを使い、指摘内容を改善し、指摘がなくなるまでこのプロセスを繰り返します。
+## Review
+ - Use the Kobayashi agent to review the sprint planning outcome.
+  - During review, always verify availability. Confirm that the plan accounts for paid leave and does not assume unavailable capacity.
+  - Velocity is only a reference; a plan may significantly exceed or fall below historical velocity if it has reasonable justification and corresponding work-hour estimates.
+ - If the review identifies issues, use the Suzuki, Takahashi, Ito, and Tanaka agents to address them and repeat until no findings remain.
 
-## リポジトリへの反映
-- 高橋エージェントを使い、必要なファイルをマージして、全てmainリポジトリに反映させます。
- - 最後に git pull origin main を実行し、差分を確認・取得します。
+## Apply Changes to the Repository
+- Use the Takahashi agent to merge the necessary files and apply everything to the main repository.
+ - Finally, run git pull origin main and review and retrieve the differences.
 
-## 記録
-- `scrum/sprint${sprint_number}/sprint_planning.md` にプランニングの結果を記録する
-- `scrum/sprint${sprint_number}/sprint_backlog.md` にスプリントバックログを作成する
-- `scrum/product_backlog.csv` の選択したPBIのステータスを更新する
-(記録は必要な要素を落とさずに、一方でできるだけ簡潔に短く記載すること)
+## Recording
+- Record the planning outcome in `scrum/sprint${sprint_number}/sprint_planning.md`.
+- Create the sprint backlog in `scrum/sprint${sprint_number}/sprint_backlog.md`.
+- Update the status of selected PBIs in `scrum/product_backlog.csv`.
+(Preserve all necessary elements in the record while keeping it as concise as possible.)
 
-## ファシリテーション
-高橋エージェントを使い、以下を確認してください：
-- 3つのトピック全てが議論されたか
-- スプリントゴールが明確に定義されたか
-- タイムボックスが守られているか
-上記が満たされていない場合、適切に介入して議論を促進してください。
+## Facilitation
+Use the Takahashi agent to verify:
+- Whether all three topics were discussed.
+- Whether the sprint goal was clearly defined.
+- Whether timeboxes were respected.
+If these conditions are not met, intervene appropriately to promote discussion.
 

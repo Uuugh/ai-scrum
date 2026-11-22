@@ -1,0 +1,16 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "dashboard_back",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    }
+  ],
+  "generator": "pub",
+  "generatorVersion": "3.12.2",
+  "flutterRoot": "file:///C:/Users/rfrie/Development/sdks/flutter",
+  "flutterVersion": "3.44.8",
+  "pubCache": "file:///C:/Users/rfrie/AppData/Local/Pub/Cache"
+}

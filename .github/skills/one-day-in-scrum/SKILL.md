@@ -1,80 +1,80 @@
 ---
 name: one-day-in-scrum
-description: デイリースクラムとインクリメント作成を実施する。スプリントゴールへの進捗確認、翌日の計画調整、障害物の特定、およびインクリメントの作成を行う。スプリント中の1日の開発サイクルに使用する。
+description: Conduct a daily Scrum and create increments. Confirm progress toward the sprint goal, adjust the plan for the next day, identify impediments, and create increments. Use for one development cycle during a sprint.
 ---
 
-# デイリースクラムとインクリメント作成
-"準備"で起動した各サブエージェントを下記の指示通りに利用します。
-(1)デイリースクラムを全員で実施、その上で各自が(2)インクリメントを作成し、(3)監査結果を対応・報告し、(4)コードをリポジトリに反映します。
+# Daily Scrum and Increment Creation
+Use each sub-agent started in "Preparation" according to the instructions below.
+(1) Hold the daily Scrum with everyone, then (2) have each person create increments, (3) address and report audit findings, and (4) apply the code to the repository.
 
-## 準備
-- サブエージェントとして、伊藤エージェント(`.github/agents/developer.ito.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、田中エージェント(`.github/agents/developer.tanaka.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、山本エージェント(`.github/agents/contractor.yamamoto.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、中村エージェント(`.github/agents/contractor.nakamura.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、小林エージェント(`.github/agents/reviewer.kobayashi.agent.md`)をモデル"GPT-5.5"で実行します。
+## Preparation
+- Run the Ito agent (`.github/agents/developer.ito.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Tanaka agent (`.github/agents/developer.tanaka.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Yamamoto agent (`.github/agents/contractor.yamamoto.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Nakamura agent (`.github/agents/contractor.nakamura.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Kobayashi agent (`.github/agents/reviewer.kobayashi.agent.md`) as a sub-agent with the model "GPT-5.5".
 
 ---
 
-## (1)デイリースクラム実施
+## (1) Conduct the Daily Scrum
 
-### 対象スプリント
-scrumフォルダから最新のsprintXXX(XXXは連番、最新のもののみを確認)を対象とします。
+### Target Sprint
+Target the latest sprintXXX in the scrum folder (XXX is sequential; check only the latest one).
  
-### 事前確認
-1. `scrum/${sprint_number}/sprint_backlog.md` を読み、現在のスプリントバックログの状態を確認する
-2. スプリントゴールを確認する
+### Pre-check
+1. Read `scrum/${sprint_number}/sprint_backlog.md` and check the current state of the sprint backlog.
+2. Confirm the sprint goal.
 
-### デイリースクラムの実施
+### Conduct the Daily Scrum
 
-伊藤エージェント、田中エージェント、山本エージェント、中村エージェントを使い、以下の観点で各メンバーの状況を確認してください：
+Use the Ito, Tanaka, Yamamoto, and Nakamura agents to check each member's status from the following perspectives:
 
-1. **昨日やったこと** - スプリントゴールに向けて何を達成したか
-2. **今日やること** - スプリントゴールに向けて何に取り組むか
-3. **障害物** - スプリントゴールの達成を妨げるものはあるか
+1. **What did you do yesterday?** — What did you accomplish toward the sprint goal?
+2. **What will you do today?** — What will you work on toward the sprint goal?
+3. **Impediments** — Is anything preventing achievement of the sprint goal?
 
-**それぞれ簡潔に短く報告してもらうようにしてください。**
+**Ask each member to report briefly and concisely.**
 
-#### 進捗の検査
-- スプリントゴールに対する全体的な進捗状況を評価する
-- スプリントバックログのタスクステータスを更新する
-- バーンダウンを更新する
+#### Inspect Progress
+- Assess overall progress toward the sprint goal.
+- Update the task statuses in the sprint backlog.
+- Update the burndown.
 
-#### 障害物の処理
-- 識別された障害物がある場合、高橋エージェントを使い `scrum/impediment_log.csv` に記録する
-- 既存の障害物の解決状況を確認する
-- その場で解決できる障害を解決する。その場で解決できないものはレトロスペクティブにて対応する。
+#### Handle Impediments
+- If impediments are identified, use the Takahashi agent to record them in `scrum/impediment_log.csv`.
+- Check the resolution status of existing impediments.
+- Resolve impediments that can be addressed immediately. For those that cannot, address them in the retrospective.
 
-#### 記録
-- `scrum/sprint${sprint_number}/daily_scrum.md` に本日のデイリースクラム記録を追記する
-- `scrum/sprint${sprint_number}/sprint_backlog.md` のタスクステータスを更新する
-**daily_scrum.mdとsprint_backlog.mdは、必要な要素を欠落させることなく、ただし簡潔に短く記録することを意識してください。**
+#### Recording
+- Append today's daily Scrum record to `scrum/sprint${sprint_number}/daily_scrum.md`.
+- Update task statuses in `scrum/sprint${sprint_number}/sprint_backlog.md`.
+**Record both daily_scrum.md and sprint_backlog.md without omitting necessary elements, but keep the content concise.**
 
-#### 適応
-- 計画の調整が必要な場合、スプリントバックログを更新する
-- スプリントゴールに影響がある場合、鈴木エージェントとスコープの再交渉を検討する
- ※鈴木エージェントとの再交渉には、サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行する必要があります。
-
----
-
-## (2)インクリメント作成
-- デイリースクラムの内容を踏まえて、田中、伊藤、山本、中村が並列にインクリメントを作成します。
- - インクリメント作成中はexplorerなどの長時間かかるタスクは最小限実行するように気を付けてください。
- - [definition_of_done.md](../../../scrum/definition_of_done.md)を確認しながら作業をし、インクリメントが完成の定義を満たすようにしてください。
-
-各エージェントのインクリメント作成が完了次第、小林エージェントがレビューを行います。
- - レビューは、計画に従った作業が確実に遂行されていることを主軸に確認します
-  - 実環境操作・作成系は過去に何度も詐称がありました、特に注意して確認してください
- - 問題が発覚した場合、即座に担当したエージェントを起動し、修正・追加対応を実施させます。
+#### Adapt
+- If the plan needs adjustment, update the sprint backlog.
+- If the sprint goal is affected, consider renegotiating the scope with the Suzuki agent.
+ ※To renegotiate with the Suzuki agent, run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
 
 ---
 
-## (3)報告
-- 田中、伊藤、山本、中村の各エージェントによるインクリメント作成後、(1)の内容を踏まえて、簡潔な報告を行います。
+## (2) Create Increments
+- Based on the daily Scrum, Tanaka, Ito, Yamamoto, and Nakamura create increments in parallel.
+ - While creating increments, minimize long-running tasks such as explorer tasks.
+ - Review [definition_of_done.md](../../../scrum/definition_of_done.md) while working and ensure that each increment meets the Definition of Done.
 
-## (4)コードのリポジトリへの反映
-- 高橋エージェントを使い、必要なファイルをマージして、全てmainリポジトリに反映させます。
- - 差分の依存を確認し、必要に応じてコードの統合や調整を行います。
- - 最後に git pull origin main を実行し、差分を確認・取得します。
+As soon as each agent finishes creating an increment, the Kobayashi agent reviews it.
+ - The primary focus of the review is confirming that work was reliably completed according to the plan.
+  - Real environment operations and creation tasks have been falsely claimed in the past; verify these especially carefully.
+ - If a problem is found, immediately start the responsible agent and have it perform the correction or additional work.
+
+---
+
+## (3) Report
+- After the Tanaka, Ito, Yamamoto, and Nakamura agents create their increments, provide a concise report based on the outcome of (1).
+
+## (4) Apply Code to the Repository
+- Use the Takahashi agent to merge the necessary files and apply everything to the main repository.
+ - Check dependencies among the differences and integrate or adjust code as needed.
+ - Finally, run git pull origin main and review and retrieve the differences.
 

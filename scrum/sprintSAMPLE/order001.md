@@ -1,7 +1,7 @@
-将来的にはAzure上にデプロイしたいが、まずはローカルで実行するWebアプリをつくってほしい
-最終的にはApp ServiceとCosmosDB＋必要なサービスで実現するのだが、まずはローカルでSvelteKitのSSGでつくったSPAと、それを配信し、またAPIを提供するnodejsのサーバプロセス + Sqliteで実現すること
+We would like to deploy to Azure in the future, but first we need a web app that runs locally.
 
-作成するものはチケット管理システム
-アサイン前、着手前、作業中、完了、途中で取りやめ、のステータスと、日付など一般的なチケット管理に必要なものは欲しい。
-なお、ダッシュボードとして可視化する機能は絶対に欲しい。誰がどんな状況かを見たい。人で絞ったり、直近の作業でしぼったりというような動的に可視化したい。
+The eventual solution will use App Service, Cosmos DB, and any required supporting services. The first version should use a SvelteKit static-site-generated single-page app, served by a Node.js process that also provides the API, with SQLite for storage.
 
+Build a ticket management system with common ticket fields, such as dates, and statuses for unassigned, not started, in progress, completed, and cancelled.
+
+A dashboard is essential. It should show who is doing what and support dynamic filtering, such as by person or recent work.

@@ -1,101 +1,101 @@
 ---
 name: full-security-audit
 description: >
-  包括的なセキュリティ監査を実施する。全6つのセキュリティレビュースキルを順序立てて実行し、
-  最終的に統合された監査報告書を作成する。プロジェクト全体のセキュリティ状態を一括評価したい場合に使用する。
-  「全体セキュリティ監査」「包括的セキュリティレビュー」「フルセキュリティチェック」「セキュリティ監査を実施」等のキーワードで使用する。
+  Perform a comprehensive security audit. Execute all six security review skills in sequence,
+  then create one consolidated audit report. Use when a project-wide security assessment is required.
+  Trigger keywords include "full security audit," "comprehensive security review," "full security check," and "perform security audit."
 ---
 
-# 包括的セキュリティ監査の実施
+# Conduct a Comprehensive Security Audit
 
-## 準備
-- サブエージェントとして、渡辺エージェント(`.github/agents/security.watanabe.agent.md`)をモデル"GPT 5.5"で実行します。
-- サブエージェントとして、鈴木エージェント(`.github/agents/product-owner.suzuki.agent.md`)をモデル"Claude Opus 4.7"で実行します。
-- サブエージェントとして、高橋エージェント(`.github/agents/scrum-master.takahashi.agent.md`)をモデル"Claude Opus 4.7"で実行します。
+## Preparation
+- Run the Watanabe agent (`.github/agents/security.watanabe.agent.md`) as a sub-agent with the model "GPT 5.5".
+- Run the Suzuki agent (`.github/agents/product-owner.suzuki.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
+- Run the Takahashi agent (`.github/agents/scrum-master.takahashi.agent.md`) as a sub-agent with the model "Claude Opus 4.7".
 
-## 目的
+## Purpose
 
-プロジェクト全体のセキュリティ状態を一括で評価する。以下の6つのレビューを順序立てて実施し、統合された監査報告書を作成する。
+Assess the project-wide security posture in one pass. Execute the following six reviews in sequence and create a consolidated audit report.
 
-## 成果物の配置場所
-- 監査報告書はルートフォルダ直下に、`/security/reviewsXXX/`（※XXXは001から始まる連番、最新の番号+1を作成する）に配置する
-- 各レビューの発見事項は`/security/reviewsXXX/`フォルダ内に、`review-ZZZ-YYYYMMDD.md`（ZZZはレビュー対象、YYYYMMDDは日付）という形式で保存する
+## Deliverable Location
+- Place the audit report directly under the root folder in `/security/reviewsXXX/`. (XXX is a sequential number starting at 001; create latest number + 1.)
+- Save each review's findings in the `/security/reviewsXXX/` folder as `review-ZZZ-YYYYMMDD.md`, where ZZZ is the review target and YYYYMMDD is the date.
 
-## 実施手順
+## Procedure
 
-### Phase 1: スコープ確認
+### Phase 1: Confirm Scope
 
-監査を開始する前に、以下を確認する：
-- 対象プロジェクトのディレクトリ構造と技術スタック
-- スクラム成果物（`scrum/` フォルダ）の有無
-- Azure環境の有無（Azure CLIのログイン状態や該当するAzureリソースの有無）
- - 対象となるリソースグループはが不明な場合は確認すること（全てのRGを対象にはしない）
-- 存在しないリソースに対するレビューはスキップする
+Before starting the audit, verify:
+- The target project's directory structure and technology stack.
+- Whether Scrum artifacts exist (`scrum/` folder).
+- Whether an Azure environment exists (Azure CLI login state and relevant Azure resources).
+ - If the target resource groups are unclear, confirm them; do not target every RG.
+- Skip reviews for resources that do not exist.
 
-### Phase 2: 各レビューの実施
+### Phase 2: Conduct Each Review
 
-渡辺エージェントが以下のスキルを実行する。
- - 各スキルの発見事項を記録しながら進める。
+The Watanabe agent executes the following skills.
+ - Record findings from each skill as work progresses.
 
-| 順序 | スキル | 対象 | スキップ条件 |
+| Order | Skill | Target | Skip Condition |
 |------|--------|------|------------|
-| 1 | `scrum-security-review` | 開発プロセス | `scrum/` フォルダが存在しない場合 |
-| 2 | `source-code-security-review` | ソースコード | `project/` 等のソースコードが存在しない場合 |
-| 3 | `config-security-review` | 設定ファイル・構成管理 | Dockerfile、CI/CD、IaCファイルが一切存在しない場合 |
-| 4 | `threat-modeling` | 脅威モデリング | （常に実施推奨） |
-| 5 | `supply-chain-security-review` | サプライチェーン | パッケージ管理ファイルが存在しない場合 |
-| 6 | `azure-cloud-security-review` | Azureクラウド | Azure CLIが未ログインまたはAzureリソースが存在しない場合 |
+| 1 | `scrum-security-review` | Development process | Skip if the `scrum/` folder does not exist |
+| 2 | `source-code-security-review` | Source code | Skip if source code such as `project/` does not exist |
+| 3 | `config-security-review` | Configuration management | Skip if no Dockerfile, CI/CD, or IaC files exist |
+| 4 | `threat-modeling` | Threat modeling | Always recommended |
+| 5 | `supply-chain-security-review` | Supply chain | Skip if no package management files exist |
+| 6 | `azure-cloud-security-review` | Azure cloud | Skip if Azure CLI is not logged in or no Azure resources exist |
 
-### Phase 3: 監査報告書の作成
+### Phase 3: Create the Audit Report
 
-全レビュー完了後、以下の手順で渡辺エージェントが統合報告書を作成する：
+After all reviews are complete, have the Watanabe agent create the consolidated report:
 
-1. 各レビューの発見事項を一覧に統合する
-2. 各発見事項に脆弱性ID（SEC-001〜）、重大度、OWASP分類を付与する(必要に応じてWeb検索を活用して分類する)
-3. 以下のテンプレートで報告書を作成する：
+1. Consolidate findings from each review into a single list.
+2. Assign each finding a vulnerability ID (SEC-001 onward), severity, and OWASP classification (use web search when needed).
+3. Create the report using the following template:
 
 ```markdown
-# セキュリティ監査報告書
+# Security Audit Report
 
-## 基本情報
-- 監査日: YYYY-MM-DD
-- 対象スプリント: sprintXXX
-- 監査範囲: （実施したレビューの一覧）
-- スキップした項目: （スキップしたレビューとその理由）
+## Basic Information
+- Audit date: YYYY-MM-DD
+- Target sprint: sprintXXX
+- Audit scope: (list of reviews performed)
+- Skipped items: (skipped reviews and reasons)
 
-## エグゼクティブサマリー
-（全体的なセキュリティ状態の概要を3-5文で記述）
+## Executive Summary
+(Describe the overall security posture in 3–5 sentences.)
 
-## 発見事項サマリー
-| 重大度 | 件数 |
+## Findings Summary
+| Severity | Count |
 |--------|------|
-| Critical | X件 |
-| High | X件 |
-| Medium | X件 |
-| Low | X件 |
-| Info | X件 |
+| Critical | X |
+| High | X |
+| Medium | X |
+| Low | X |
+| Info | X |
 
-## 発見事項詳細
-（各発見事項をカテゴリ別に記述）
+## Findings Details
+(Describe each finding by category.)
 
-## 改善ロードマップ
-- **即時対応（24時間以内）**: Critical の発見事項
-- **現スプリント内**: High の発見事項
-- **次スプリント**: Medium の発見事項
-- **バックログ追加**: Low の発見事項
+## Improvement Roadmap
+- **Immediate response (within 24 hours)**: Critical findings
+- **Within the current sprint**: High findings
+- **Next sprint**: Medium findings
+- **Add to backlog**: Low findings
 
-## 結論と推奨事項
-（総合的な評価と今後のアクション）
+## Conclusion and Recommendations
+(Provide the overall assessment and future actions.)
 ```
 
-### Phase 4: 監査報告書のスクラムチーム取り込み
+### Phase 4: Incorporate the Audit Report into Scrum Work
 
-4. 改善ロードマップに基づき、バックログへのセキュリティPBI追加、セキュリティ障害追加を鈴木エージェントと高橋エージェントに提案する
-鈴木エージェントは改善ロードマップ内容を確認し、渡辺エージェントと確認しながらPBIを更新します。
-高橋エージェントは改善ロードマップ内容を確認し、渡辺エージェントと確認しながら障害リストを更新します。
+4. Based on the improvement roadmap, propose adding security PBIs to the backlog and security impediments to the impediment list to the Suzuki and Takahashi agents.
+The Suzuki agent reviews the roadmap and updates PBIs in consultation with the Watanabe agent.
+The Takahashi agent reviews the roadmap and updates the impediment list in consultation with the Watanabe agent.
 
-### Phase 5: リポジトリへの反映
+### Phase 5: Apply Changes to the Repository
 
-5. 監査報告書と各レビューの発見事項を高橋エージェントを用いて、mainリポジトリに反映する
- - 最後に git pull origin main を実行し、差分を確認・取得します。
+5. Use the Takahashi agent to apply the audit report and each review's findings to the main repository.
+ - Finally, run git pull origin main and review and retrieve the differences.
 

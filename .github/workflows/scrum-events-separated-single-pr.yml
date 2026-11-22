@@ -22,7 +22,7 @@ jobs:
           set -euo pipefail
           if [[ -z "${GH_AW_GITHUB_TOKEN}" ]]; then
             echo "::error::GH_AW_GITHUB_TOKEN secret is required for worker safe-outputs."
-            echo "::error::.github/workflows/** を含む差分を push するには、Contents に加えて Workflows 権限を持つ PAT または GitHub App token を設定してください。"
+            echo "::error::To push changes that include .github/workflows/**, configure a PAT or GitHub App token with both Contents and Workflows permissions."
             exit 1
           fi
 
@@ -71,7 +71,7 @@ jobs:
           fi
 
           pr_head="${GITHUB_REPOSITORY_OWNER}:${PR_BRANCH_NAME}"
-          pr_title="[ai-sprint] Sprint ${next_sprint_number} - スプリント成果物集約PR"
+          pr_title="[ai-sprint] Sprint ${next_sprint_number} - Sprint Deliverables Aggregate PR"
 
           read -r pr_number pr_url < <(
             gh pr list \
@@ -97,7 +97,7 @@ jobs:
               --base "${GITHUB_REF_NAME}" \
               --head "${PR_BRANCH_NAME}" \
               --title "${pr_title}" \
-              --body "このPRはスクラムイベント分割実行の成果物を集約するために作成されました。初回は空コミットのみを含み、planning 以降の成果物が順次積み増されます。" |
+              --body "This PR aggregates deliverables from the split Scrum event workflow. It initially contains only an empty commit, and deliverables from planning onward are added incrementally." |
                 tail -n 1
             )
 
@@ -158,7 +158,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Sprint Planning did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Sprint Planning did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -190,7 +190,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Day1 did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Day1 did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -222,7 +222,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Day2 did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Day2 did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -254,7 +254,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Day3 did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Day3 did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -286,7 +286,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Day4 did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Day4 did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -318,7 +318,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Day5 did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Day5 did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -350,7 +350,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Sprint Review did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Sprint Review did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -382,7 +382,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "${PUSH_COMMIT_SHA}" ]]; then
-            echo "::error::Sprint Retrospective did not push any成果物. The worker must update existing files and call push_to_pull_request_branch."
+            echo "::error::Sprint Retrospective did not push any deliverables. The worker must update existing files and call push_to_pull_request_branch."
             exit 1
           fi
 
@@ -403,11 +403,11 @@ jobs:
         shell: bash
         run: |
           body=$(cat <<EOF
-          このPRはスクラムイベントを分割実行して集約したものです。
+          This PR aggregates deliverables produced by running Scrum events separately.
 
-          - sprint-planning、day1〜day5、sprint-review、sprint-retrospective を独立workerで順番実行
-          - 変更は同一PRブランチ \`${PR_BRANCH_NAME}\` に集約
-          - 主な更新成果物はPR差分を参照
+          - Run sprint planning, day1 through day5, sprint review, and sprint retrospective sequentially in independent workers.
+          - Changes are aggregated in the same PR branch: \`${PR_BRANCH_NAME}\`.
+          - See the PR diff for the main updated deliverables.
           EOF
           )
           gh pr edit -R "${{ github.repository }}" "${PR_NUMBER}" --body "${body}"

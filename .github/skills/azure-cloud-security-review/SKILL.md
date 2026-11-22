@@ -1,134 +1,132 @@
 ---
 name: azure-cloud-security-review
 description: >
-  Azure上にデプロイされたリソースのセキュリティ構成を評価し、Azure Security Benchmark v3およびCIS Benchmarksに準拠しているかを検証する。
-  IAM、ネットワークセキュリティ、データ暗号化、Defender for Cloud、ログ監視、Azure Policyを確認する。
-  「Azureのセキュリティ監査」「クラウドセキュリティ監査」「Azure監査」「IAM監査」「NSG監査」等のキーワードで使用する。
+  Assess the security configuration of resources deployed on Azure and verify compliance with Azure Security Benchmark v3 and CIS Benchmarks.
+  Review IAM, network security, data encryption, Microsoft Defender for Cloud, logging and monitoring, and Azure Policy.
+  Trigger keywords include "Azure security audit," "cloud security audit," "Azure audit," "IAM audit," and "NSG audit."
 ---
 
-# Azureクラウド セキュリティレビュー
+# Azure Cloud Security Review
 
-## 目的
+## Purpose
+Assess the security configuration of resources deployed on Azure and verify compliance with Azure Security Benchmark v3 and CIS Benchmarks.
 
-Azure上にデプロイされたリソースのセキュリティ構成を評価し、Azure Security Benchmark v3およびCIS Benchmarksに準拠しているかを検証する。
+## Prerequisites
+- Azure CLI is installed and logged in to the target subscription.
+- Reader or higher permissions are available for the target resource group.
 
-## 前提条件
+## Instructions
 
-- Azure CLIがインストールされ、対象サブスクリプションにログイン済みであること
-- 対象リソースグループへの読み取り権限（Reader以上）を持っていること
-
-## 作業指示
-
-1. **Azure環境の全体把握を行う**
-   - 以下のコマンドでリソースの全体像を確認する：
+1. **Inventory the Azure environment**
+   - Use these commands to understand the resource landscape:
      ```bash
-     # サブスクリプション一覧
+     # List subscriptions
      az account list --output table
 
-     # リソースグループ一覧
+     # List resource groups
      az group list --output table
 
-     # リソース一覧
+     # List resources
      az resource list --resource-group <rg-name> --output table
      ```
 
-2. **IAM（Identity and Access Management）を検証する**
-   - 以下を確認する：
+2. **Verify IAM (Identity and Access Management)**
+   - Run:
      ```bash
-     # ロール割り当ての確認
+     # Review role assignments
      az role assignment list --all --output table
 
-     # カスタムロールの確認
+     # Review custom roles
      az role definition list --custom-role-only true --output table
      ```
-   - 検証項目：
-     - マネージドID（Managed Identity）が使用されているか
-     - サービスプリンシパルにパスワード認証ではなく証明書認証が使用されているか
-     - 最小権限の原則が適用されているか（Owner権限の付与が最小限か）
-     - ゲストユーザのアクセスが適切に制限されているか
-     - Privileged Identity Management（PIM）が有効化されているか
+   - Verify:
+     - Managed identities are used.
+     - Service principals use certificate authentication instead of password authentication.
+     - Least privilege is applied and Owner grants are limited.
+     - Guest-user access is appropriately restricted.
+     - Privileged Identity Management (PIM) is enabled.
 
-3. **ネットワークセキュリティを検証する**
-   - 以下を確認する：
+3. **Verify network security**
+   - Run:
      ```bash
-     # NSGルールの確認
+     # Review NSG rules
      az network nsg list --output table
      az network nsg rule list --nsg-name <nsg-name> --resource-group <rg-name> --output table
 
-     # パブリックIPの確認
+     # Review public IP addresses
      az network public-ip list --output table
 
-     # VNet構成の確認
+     # Review VNet configuration
      az network vnet list --output table
      ```
-   - 検証項目：
-     - 不要なインバウンドルール（0.0.0.0/0からのSSH/RDP）がないか
-     - プライベートエンドポイントが使用されているか
-     - WAF（Web Application Firewall）が適用されているか
-     - DDoS Protection が有効化されているか
+   - Verify:
+     - No unnecessary inbound rules permit SSH/RDP from 0.0.0.0/0.
+     - Private endpoints are used.
+     - A WAF (Web Application Firewall) is applied.
+     - DDoS Protection is enabled.
 
-4. **データ保護・暗号化を検証する**
-   - 以下を確認する：
+4. **Verify data protection and encryption**
+   - Run:
      ```bash
-     # Key Vaultの確認
+     # Review Key Vault
      az keyvault list --output table
      az keyvault show --name <vault-name>
 
-     # ストレージアカウントの確認
+     # Review storage accounts
      az storage account list --output table
      az storage account show --name <account-name> --query "{httpsOnly:enableHttpsTrafficOnly,minimumTlsVersion:minimumTlsVersion,publicAccess:allowBlobPublicAccess}"
      ```
-   - 検証項目：
-     - ストレージアカウントのパブリックアクセスが無効化されているか
-     - HTTPSのみの通信が強制されているか
-     - TLS 1.2以上が最小バージョンとして設定されているか
-     - Key Vaultでシークレットが管理されているか
-     - Key Vaultのソフト削除と消去保護が有効化されているか
+   - Verify:
+     - Public access to storage accounts is disabled.
+     - HTTPS-only traffic is enforced.
+     - TLS 1.2 or higher is the minimum supported version.
+     - Secrets are managed in Key Vault.
+     - Key Vault soft delete and purge protection are enabled.
 
-5. **Microsoft Defender for Cloudの状態を確認する**
-   - 以下を確認する：
+5. **Check Microsoft Defender for Cloud**
+   - Run:
      ```bash
-     # セキュリティ評価の確認
+     # Review security assessments
      az security assessment list --output table
 
-     # セキュアスコアの確認
+     # Review secure score
      az security secure-score-control list --output table
 
-     # 規制コンプライアンスの確認
+     # Review regulatory compliance
      az security regulatory-compliance-standards list --output table
      ```
-   - 検証項目：
-     - Defender for Cloudが全サブスクリプションで有効化されているか
-     - セキュアスコアが70%以上であるか
-     - Critical/Highの推奨事項に未対応のものがないか
+   - Verify:
+     - Defender for Cloud is enabled across all subscriptions.
+     - Secure score is at least 70%.
+     - No unresolved Critical/High recommendations remain.
 
-6. **ログ・監視・アラートの設定を検証する**
-   - 以下を確認する：
+6. **Verify logging, monitoring, and alerts**
+   - Run:
      ```bash
-     # 診断設定の確認
+     # Review diagnostic settings
      az monitor diagnostic-settings list --resource <resource-id> --output table
 
-     # Log Analytics ワークスペースの確認
+     # Review Log Analytics workspaces
      az monitor log-analytics workspace list --output table
 
-     # アクティビティログアラートの確認
+     # Review activity log alerts
      az monitor activity-log alert list --output table
      ```
-   - 検証項目：
-     - 主要リソースの診断ログが有効化されているか
-     - Log Analyticsワークスペースにログが集約されているか
-     - セキュリティイベントに対するアラートが設定されているか
-     - ログの保持期間が適切に設定されているか（最低90日推奨）
+   - Verify:
+     - Diagnostic logs are enabled for major resources.
+     - Logs are aggregated in a Log Analytics workspace.
+     - Alerts are configured for security events.
+     - Log retention is appropriate (minimum 90 days recommended).
 
-7. **Azure Policyによるガバナンスを確認する**
-   - 以下を確認する：
+7. **Verify governance with Azure Policy**
+   - Run:
      ```bash
-     # ポリシー割り当ての確認
+     # Review policy assignments
      az policy assignment list --output table
 
-     # ポリシーコンプライアンス状態の確認
+     # Review policy compliance status
      az policy state summarize --output table
      ```
-   - 検証項目：
-     - セキュリティ関連のポリシーが割り当てられているか
-     - 非準拠リソースの数と内容を確認し、改善を提案する
+   - Verify:
+     - Security-related policies are assigned.
+     - The number and nature of non-compliant resources are identified and remediation is proposed.
